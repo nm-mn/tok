@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Amplify, Auth } from 'aws-amplify';
+import awsExports from './aws-exports';
+import { BrowserRouter } from "react-router-dom";
+
+Amplify.configure(awsExports);
+Auth.configure(awsExports)
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

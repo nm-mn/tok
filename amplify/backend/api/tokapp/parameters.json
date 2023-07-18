@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "tokapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtokapp2fc5fe95",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

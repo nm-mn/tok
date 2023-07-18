@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tokapp-dev-193804-authRole",
+      "UnauthRoleArn": "arn:aws:iam::660651572334:role/amplify-tokapp-dev-193804-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::660651572334:role/amplify-tokapp-dev-193804-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-tokapp-dev-193804-deployment",
+      "UnauthRoleName": "amplify-tokapp-dev-193804-unauthRole",
+      "StackName": "amplify-tokapp-dev-193804",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:660651572334:stack/amplify-tokapp-dev-193804/e3f756e0-02c3-11ee-8a20-0665c5d1f92d",
+      "AmplifyAppId": "d1mdu306bk8pbq"
+    },
+    "categories": {
+      "auth": {
+        "tokapp2fc5fe95": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1mdu306bk8pbq",
+          "type": "manual"
+        }
+      },
+      "api": {
+        "tokapp": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.page__padding {
+    padding: 32px;
+    margin-top: 65px;
+}
+
+.link {
+    color: #A23F02;
+    cursor: pointer;
+}
+
+.fon__body-small {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.font__body-medium {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.font__body-large {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font__headline-small {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.font__headline-medium {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+.font__headline-large {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.font__color-sub-text {
+    color: #7F7571;
+}
+
+.font__color-theme {
+    color: #A23F02;
+}
+
+.font__color-hint {
+    color: #B4A9A5;
+}
