@@ -1,10 +1,108 @@
-import { ModelInit, MutableModel, __modelMeta__, OptionallyManagedIdentifier } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, CustomIdentifier, ManagedIdentifier, OptionallyManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
 
 
 
+
+type EagerChannel = {
+  readonly [__modelMeta__]: {
+    identifier: CustomIdentifier<Channel, 'channel_id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly channel_id: string;
+  readonly messages: (Message | null)[];
+  readonly readStatus?: ReadStatus | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelReadStatusId?: string | null;
+}
+
+type LazyChannel = {
+  readonly [__modelMeta__]: {
+    identifier: CustomIdentifier<Channel, 'channel_id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly channel_id: string;
+  readonly messages: AsyncCollection<Message>;
+  readonly readStatus: AsyncItem<ReadStatus | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelReadStatusId?: string | null;
+}
+
+export declare type Channel = LazyLoading extends LazyLoadingDisabled ? EagerChannel : LazyChannel
+
+export declare const Channel: (new (init: ModelInit<Channel>) => Channel) & {
+  copyOf(source: Channel, mutator: (draft: MutableModel<Channel>) => MutableModel<Channel> | void): Channel;
+}
+
+type EagerMessage = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Message, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel: Channel;
+  readonly message: string;
+  readonly date: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelMessagesChannel_id?: string | null;
+}
+
+type LazyMessage = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Message, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel: AsyncItem<Channel>;
+  readonly message: string;
+  readonly date: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelMessagesChannel_id?: string | null;
+}
+
+export declare type Message = LazyLoading extends LazyLoadingDisabled ? EagerMessage : LazyMessage
+
+export declare const Message: (new (init: ModelInit<Message>) => Message) & {
+  copyOf(source: Message, mutator: (draft: MutableModel<Message>) => MutableModel<Message> | void): Message;
+}
+
+type EagerReadStatus = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ReadStatus, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel: Channel;
+  readonly date?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly readStatusChannelChannel_id: string;
+}
+
+type LazyReadStatus = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ReadStatus, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel: AsyncItem<Channel>;
+  readonly date?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly readStatusChannelChannel_id: string;
+}
+
+export declare type ReadStatus = LazyLoading extends LazyLoadingDisabled ? EagerReadStatus : LazyReadStatus
+
+export declare const ReadStatus: (new (init: ModelInit<ReadStatus>) => ReadStatus) & {
+  copyOf(source: ReadStatus, mutator: (draft: MutableModel<ReadStatus>) => MutableModel<ReadStatus> | void): ReadStatus;
+}
 
 type EagerProfile = {
   readonly [__modelMeta__]: {

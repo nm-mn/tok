@@ -4,9 +4,12 @@ import { schema } from './schema';
 
 
 
-const { Profile, SkillInstance, SkillMaster } = initSchema(schema);
+const { Channel, Message, ReadStatus, Profile, SkillInstance, SkillMaster } = initSchema(schema);
 
 export {
+  Channel,
+  Message,
+  ReadStatus,
   Profile,
   SkillInstance,
   SkillMaster

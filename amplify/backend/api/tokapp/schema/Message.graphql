@@ -1,0 +1,29 @@
+type Channel @model @auth(rules: [
+  { allow: private}
+]){
+    channel_id: ID! @primaryKey
+    profile_ids: [String]!
+    messages: [Message]! @hasMany
+    readStatus: [ReadStatus] @hasMany
+}
+
+type Message @model @auth(rules: [
+  { allow: private}
+]){
+    channel: Channel! @belongsTo
+    message: String!
+    sender: Profile!
+    date: String!
+}
+
+type ReadStatus @model @auth(rules: [
+  { allow: private}
+]){
+    channel: Channel! @belongsTo
+    profile_id: String!
+    date: String
+}
+
+type Query {
+    listChannelsBySender(profileId: ID!): [Channel] @function(name: "customResolver-${env}")
+}
