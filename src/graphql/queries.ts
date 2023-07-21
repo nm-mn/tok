@@ -7,85 +7,55 @@ export const listChannelsBySender = /* GraphQL */ `
     listChannelsBySender(profileId: $profileId) {
       channel_id
       profiles {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      messages {
         items {
-          message
-          date
           id
+          channel_id
+          profile_id
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelMessagesChannel_id
+          channelProfilesChannel_id
+        }
+        nextToken
+        startedAt
+      }
+      messages {
+        items {
+          id
+          channel_id
+          message
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
       }
       readStatus {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
+        items {
           id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
+          channel_id
+          profileID
+          date
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        date
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        readStatusChannelChannel_id
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelReadStatusId
     }
   }
 `;
@@ -94,85 +64,55 @@ export const getChannel = /* GraphQL */ `
     getChannel(channel_id: $channel_id) {
       channel_id
       profiles {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      messages {
         items {
-          message
-          date
           id
+          channel_id
+          profile_id
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelMessagesChannel_id
+          channelProfilesChannel_id
+        }
+        nextToken
+        startedAt
+      }
+      messages {
+        items {
+          id
+          channel_id
+          message
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
       }
       readStatus {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
+        items {
           id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
+          channel_id
+          profileID
+          date
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        date
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        readStatusChannelChannel_id
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelReadStatusId
     }
   }
 `;
@@ -194,43 +134,22 @@ export const listChannels = /* GraphQL */ `
       items {
         channel_id
         profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
+          nextToken
+          startedAt
         }
         messages {
           nextToken
           startedAt
         }
         readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        channelReadStatusId
       }
       nextToken
       startedAt
@@ -253,6 +172,77 @@ export const syncChannels = /* GraphQL */ `
       items {
         channel_id
         profiles {
+          nextToken
+          startedAt
+        }
+        messages {
+          nextToken
+          startedAt
+        }
+        readStatus {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getChannelProfile = /* GraphQL */ `
+  query GetChannelProfile($id: ID!) {
+    getChannelProfile(id: $id) {
+      id
+      channel_id
+      profile_id
+      profile {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      channelProfilesChannel_id
+    }
+  }
+`;
+export const listChannelProfiles = /* GraphQL */ `
+  query ListChannelProfiles(
+    $filter: ModelChannelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChannelProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        channel_id
+        profile_id
+        profile {
           id
           first_name
           last_name
@@ -270,26 +260,59 @@ export const syncChannels = /* GraphQL */ `
           _deleted
           _lastChangedAt
         }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        channelProfilesChannel_id
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncChannelProfiles = /* GraphQL */ `
+  query SyncChannelProfiles(
+    $filter: ModelChannelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncChannelProfiles(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        channel_id
+        profile_id
+        profile {
           id
+          first_name
+          last_name
+          email
+          accepting
+          region_location
+          country_location
+          primary_language
+          secondary_language
+          tetrary_language
+          bio
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          readStatusChannelChannel_id
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        channelReadStatusId
+        channelProfilesChannel_id
       }
       nextToken
       startedAt
@@ -299,47 +322,8 @@ export const syncChannels = /* GraphQL */ `
 export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
+      id
+      channel_id
       message
       sender {
         id
@@ -364,13 +348,11 @@ export const getMessage = /* GraphQL */ `
         _lastChangedAt
       }
       date
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelMessagesChannel_id
     }
   }
 `;
@@ -382,15 +364,8 @@ export const listMessages = /* GraphQL */ `
   ) {
     listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
+        id
+        channel_id
         message
         sender {
           id
@@ -411,13 +386,11 @@ export const listMessages = /* GraphQL */ `
           _lastChangedAt
         }
         date
-        id
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        channelMessagesChannel_id
       }
       nextToken
       startedAt
@@ -438,15 +411,8 @@ export const syncMessages = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
+        id
+        channel_id
         message
         sender {
           id
@@ -467,13 +433,11 @@ export const syncMessages = /* GraphQL */ `
           _lastChangedAt
         }
         date
-        id
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        channelMessagesChannel_id
       }
       nextToken
       startedAt
@@ -483,77 +447,15 @@ export const syncMessages = /* GraphQL */ `
 export const getReadStatus = /* GraphQL */ `
   query GetReadStatus($id: ID!) {
     getReadStatus(id: $id) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      date
       id
+      channel_id
+      profileID
+      date
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      readStatusChannelChannel_id
     }
   }
 `;
@@ -565,41 +467,15 @@ export const listReadStatuses = /* GraphQL */ `
   ) {
     listReadStatuses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        date
         id
+        channel_id
+        profileID
+        date
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        readStatusChannelChannel_id
       }
       nextToken
       startedAt
@@ -620,41 +496,15 @@ export const syncReadStatuses = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        date
         id
+        channel_id
+        profileID
+        date
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        readStatusChannelChannel_id
       }
       nextToken
       startedAt
@@ -1030,6 +880,135 @@ export const syncSkillMasters = /* GraphQL */ `
           nextToken
           startedAt
         }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const channelProfilesByChannel_id = /* GraphQL */ `
+  query ChannelProfilesByChannel_id(
+    $channel_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelChannelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    channelProfilesByChannel_id(
+      channel_id: $channel_id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        channel_id
+        profile_id
+        profile {
+          id
+          first_name
+          last_name
+          email
+          accepting
+          region_location
+          country_location
+          primary_language
+          secondary_language
+          tetrary_language
+          bio
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        channelProfilesChannel_id
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const messagesByChannel_id = /* GraphQL */ `
+  query MessagesByChannel_id(
+    $channel_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesByChannel_id(
+      channel_id: $channel_id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        channel_id
+        message
+        sender {
+          id
+          first_name
+          last_name
+          email
+          accepting
+          region_location
+          country_location
+          primary_language
+          secondary_language
+          tetrary_language
+          bio
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        date
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const readStatusesByChannel_id = /* GraphQL */ `
+  query ReadStatusesByChannel_id(
+    $channel_id: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelReadStatusFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    readStatusesByChannel_id(
+      channel_id: $channel_id
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        channel_id
+        profileID
+        date
         createdAt
         updatedAt
         _version

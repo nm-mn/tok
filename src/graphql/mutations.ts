@@ -10,85 +10,55 @@ export const createChannel = /* GraphQL */ `
     createChannel(input: $input, condition: $condition) {
       channel_id
       profiles {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      messages {
         items {
-          message
-          date
           id
+          channel_id
+          profile_id
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelMessagesChannel_id
+          channelProfilesChannel_id
+        }
+        nextToken
+        startedAt
+      }
+      messages {
+        items {
+          id
+          channel_id
+          message
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
       }
       readStatus {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
+        items {
           id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
+          channel_id
+          profileID
+          date
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        date
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        readStatusChannelChannel_id
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelReadStatusId
     }
   }
 `;
@@ -100,85 +70,55 @@ export const updateChannel = /* GraphQL */ `
     updateChannel(input: $input, condition: $condition) {
       channel_id
       profiles {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      messages {
         items {
-          message
-          date
           id
+          channel_id
+          profile_id
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelMessagesChannel_id
+          channelProfilesChannel_id
+        }
+        nextToken
+        startedAt
+      }
+      messages {
+        items {
+          id
+          channel_id
+          message
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
       }
       readStatus {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
+        items {
           id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
+          channel_id
+          profileID
+          date
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        date
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        readStatusChannelChannel_id
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelReadStatusId
     }
   }
 `;
@@ -190,6 +130,68 @@ export const deleteChannel = /* GraphQL */ `
     deleteChannel(input: $input, condition: $condition) {
       channel_id
       profiles {
+        items {
+          id
+          channel_id
+          profile_id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          channelProfilesChannel_id
+        }
+        nextToken
+        startedAt
+      }
+      messages {
+        items {
+          id
+          channel_id
+          message
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      readStatus {
+        items {
+          id
+          channel_id
+          profileID
+          date
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createChannelProfile = /* GraphQL */ `
+  mutation CreateChannelProfile(
+    $input: CreateChannelProfileInput!
+    $condition: ModelChannelProfileConditionInput
+  ) {
+    createChannelProfile(input: $input, condition: $condition) {
+      id
+      channel_id
+      profile_id
+      profile {
         id
         first_name
         last_name
@@ -211,64 +213,92 @@ export const deleteChannel = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      messages {
-        items {
-          message
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelMessagesChannel_id
-        }
-        nextToken
-        startedAt
-      }
-      readStatus {
-        channel {
-          channel_id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          channelReadStatusId
-        }
-        profile {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        date
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      channelProfilesChannel_id
+    }
+  }
+`;
+export const updateChannelProfile = /* GraphQL */ `
+  mutation UpdateChannelProfile(
+    $input: UpdateChannelProfileInput!
+    $condition: ModelChannelProfileConditionInput
+  ) {
+    updateChannelProfile(input: $input, condition: $condition) {
+      id
+      channel_id
+      profile_id
+      profile {
         id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        readStatusChannelChannel_id
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelReadStatusId
+      channelProfilesChannel_id
+    }
+  }
+`;
+export const deleteChannelProfile = /* GraphQL */ `
+  mutation DeleteChannelProfile(
+    $input: DeleteChannelProfileInput!
+    $condition: ModelChannelProfileConditionInput
+  ) {
+    deleteChannelProfile(input: $input, condition: $condition) {
+      id
+      channel_id
+      profile_id
+      profile {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      channelProfilesChannel_id
     }
   }
 `;
@@ -278,47 +308,8 @@ export const createMessage = /* GraphQL */ `
     $condition: ModelMessageConditionInput
   ) {
     createMessage(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
+      id
+      channel_id
       message
       sender {
         id
@@ -343,13 +334,11 @@ export const createMessage = /* GraphQL */ `
         _lastChangedAt
       }
       date
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelMessagesChannel_id
     }
   }
 `;
@@ -359,47 +348,8 @@ export const updateMessage = /* GraphQL */ `
     $condition: ModelMessageConditionInput
   ) {
     updateMessage(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
+      id
+      channel_id
       message
       sender {
         id
@@ -424,13 +374,11 @@ export const updateMessage = /* GraphQL */ `
         _lastChangedAt
       }
       date
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelMessagesChannel_id
     }
   }
 `;
@@ -440,47 +388,8 @@ export const deleteMessage = /* GraphQL */ `
     $condition: ModelMessageConditionInput
   ) {
     deleteMessage(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
+      id
+      channel_id
       message
       sender {
         id
@@ -505,13 +414,11 @@ export const deleteMessage = /* GraphQL */ `
         _lastChangedAt
       }
       date
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      channelMessagesChannel_id
     }
   }
 `;
@@ -521,77 +428,15 @@ export const createReadStatus = /* GraphQL */ `
     $condition: ModelReadStatusConditionInput
   ) {
     createReadStatus(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      date
       id
+      channel_id
+      profileID
+      date
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      readStatusChannelChannel_id
     }
   }
 `;
@@ -601,77 +446,15 @@ export const updateReadStatus = /* GraphQL */ `
     $condition: ModelReadStatusConditionInput
   ) {
     updateReadStatus(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      date
       id
+      channel_id
+      profileID
+      date
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      readStatusChannelChannel_id
     }
   }
 `;
@@ -681,77 +464,15 @@ export const deleteReadStatus = /* GraphQL */ `
     $condition: ModelReadStatusConditionInput
   ) {
     deleteReadStatus(input: $input, condition: $condition) {
-      channel {
-        channel_id
-        profiles {
-          id
-          first_name
-          last_name
-          email
-          accepting
-          region_location
-          country_location
-          primary_language
-          secondary_language
-          tetrary_language
-          bio
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        messages {
-          nextToken
-          startedAt
-        }
-        readStatus {
-          date
-          id
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          readStatusChannelChannel_id
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        channelReadStatusId
-      }
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      date
       id
+      channel_id
+      profileID
+      date
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      readStatusChannelChannel_id
     }
   }
 `;

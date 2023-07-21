@@ -12,11 +12,11 @@ type EagerChannel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly channel_id: string;
+  readonly profiles: (ChannelProfile | null)[];
   readonly messages: (Message | null)[];
-  readonly readStatus?: ReadStatus | null;
+  readonly readStatus?: (ReadStatus | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly channelReadStatusId?: string | null;
 }
 
 type LazyChannel = {
@@ -25,11 +25,11 @@ type LazyChannel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly channel_id: string;
+  readonly profiles: AsyncCollection<ChannelProfile>;
   readonly messages: AsyncCollection<Message>;
-  readonly readStatus: AsyncItem<ReadStatus | undefined>;
+  readonly readStatus: AsyncCollection<ReadStatus>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly channelReadStatusId?: string | null;
 }
 
 export declare type Channel = LazyLoading extends LazyLoadingDisabled ? EagerChannel : LazyChannel
@@ -38,18 +38,51 @@ export declare const Channel: (new (init: ModelInit<Channel>) => Channel) & {
   copyOf(source: Channel, mutator: (draft: MutableModel<Channel>) => MutableModel<Channel> | void): Channel;
 }
 
+type EagerChannelProfile = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel_id: string;
+  readonly profile_id: string;
+  readonly profile?: Profile | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelProfilesChannel_id?: string | null;
+}
+
+type LazyChannelProfile = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channel_id: string;
+  readonly profile_id: string;
+  readonly profile: AsyncItem<Profile | undefined>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly channelProfilesChannel_id?: string | null;
+}
+
+export declare type ChannelProfile = LazyLoading extends LazyLoadingDisabled ? EagerChannelProfile : LazyChannelProfile
+
+export declare const ChannelProfile: (new (init: ModelInit<ChannelProfile>) => ChannelProfile) & {
+  copyOf(source: ChannelProfile, mutator: (draft: MutableModel<ChannelProfile>) => MutableModel<ChannelProfile> | void): ChannelProfile;
+}
+
 type EagerMessage = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Message, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly channel: Channel;
+  readonly channel_id: string;
   readonly message: string;
   readonly date: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly channelMessagesChannel_id?: string | null;
 }
 
 type LazyMessage = {
@@ -58,12 +91,11 @@ type LazyMessage = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly channel: AsyncItem<Channel>;
+  readonly channel_id: string;
   readonly message: string;
   readonly date: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly channelMessagesChannel_id?: string | null;
 }
 
 export declare type Message = LazyLoading extends LazyLoadingDisabled ? EagerMessage : LazyMessage
@@ -78,11 +110,11 @@ type EagerReadStatus = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly channel: Channel;
+  readonly channel_id: string;
+  readonly profileID: string;
   readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly readStatusChannelChannel_id: string;
 }
 
 type LazyReadStatus = {
@@ -91,11 +123,11 @@ type LazyReadStatus = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly channel: AsyncItem<Channel>;
+  readonly channel_id: string;
+  readonly profileID: string;
   readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly readStatusChannelChannel_id: string;
 }
 
 export declare type ReadStatus = LazyLoading extends LazyLoadingDisabled ? EagerReadStatus : LazyReadStatus

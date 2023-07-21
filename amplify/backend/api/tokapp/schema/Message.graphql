@@ -2,15 +2,25 @@ type Channel @model @auth(rules: [
   { allow: private}
 ]){
     channel_id: ID! @primaryKey
-    profile_ids: [String]!
-    messages: [Message]! @hasMany
-    readStatus: [ReadStatus] @hasMany
+    profiles: [ChannelProfile]! @hasMany(indexName: "byProfile")
+    messages: [Message]! @hasMany(indexName: "byChannel", fields: ["channel_id"])
+    readStatus: [ReadStatus] @hasMany(indexName: "byChannel", fields: ["channel_id"])
+}
+
+type ChannelProfile @model @auth(rules: [
+  { allow: private}
+]){
+    id: ID!
+    channel_id: ID! @index(name: "byProfile")
+    profile_id: ID!
+    profile: Profile @hasOne(fields: ["profile_id"])
 }
 
 type Message @model @auth(rules: [
   { allow: private}
 ]){
-    channel: Channel! @belongsTo
+    id: ID!
+    channel_id: ID! @index(name: "byChannel")
     message: String!
     sender: Profile!
     date: String!
@@ -19,8 +29,9 @@ type Message @model @auth(rules: [
 type ReadStatus @model @auth(rules: [
   { allow: private}
 ]){
-    channel: Channel! @belongsTo
-    profile_id: String!
+    id: ID!
+    channel_id: ID! @index(name: "byChannel")
+    profileID: ID!
     date: String
 }
 
