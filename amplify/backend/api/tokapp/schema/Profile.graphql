@@ -17,6 +17,7 @@ type Profile @model @auth(rules: [
   tetrary_language: String
   bio: String
   skills: [SkillInstance] @hasMany
+  channels: [Channel] @manyToMany(relationName: "ChannelProfile")
 }
 
 type SkillInstance @model @auth(rules: [

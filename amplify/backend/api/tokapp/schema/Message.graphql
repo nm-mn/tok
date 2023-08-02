@@ -2,27 +2,18 @@ type Channel @model @auth(rules: [
   { allow: private}
 ]){
     channel_id: ID! @primaryKey
-    profiles: [ChannelProfile]! @hasMany(indexName: "byProfile")
-    messages: [Message]! @hasMany(indexName: "byChannel", fields: ["channel_id"])
+    profiles: [Profile]! @manyToMany(relationName: "ChannelProfile")
+    messages: [Message]! @hasMany(indexName: "byChannelAndDate", fields: ["channel_id"])
     readStatus: [ReadStatus] @hasMany(indexName: "byChannel", fields: ["channel_id"])
-}
-
-type ChannelProfile @model @auth(rules: [
-  { allow: private}
-]){
-    id: ID!
-    channel_id: ID! @index(name: "byProfile")
-    profile_id: ID!
-    profile: Profile @hasOne(fields: ["profile_id"])
 }
 
 type Message @model @auth(rules: [
   { allow: private}
 ]){
     id: ID!
-    channel_id: ID! @index(name: "byChannel")
+    channel_id: ID! @index(name: "byChannelAndDate", queryField: "byChannelAndDate", sortKeyFields: ["date"])
     message: String!
-    sender: Profile!
+    profile_id: ID!
     date: String!
 }
 
@@ -31,10 +22,6 @@ type ReadStatus @model @auth(rules: [
 ]){
     id: ID!
     channel_id: ID! @index(name: "byChannel")
-    profileID: ID!
+    profile_id: ID!
     date: String
-}
-
-type Query {
-    listChannelsBySender(profileId: ID!): [Channel] @function(name: "customResolver-${env}")
 }

@@ -1,18 +1,11 @@
 import React from "react";
 import { Dayjs } from "dayjs";
 import './inbox.css';
-import { Label } from "../interfaces/common"
+import { Label, Inbox } from "../interfaces/common"
 import Avatar from "@mui/material/Avatar";
 import { DAYJS_FORMAT } from "../constants/internal_common"
 
-interface Props {
-    status: string; // TODO: to enum read, unread, selected
-    sender: string;
-    date: Dayjs;
-    message: string;
-    skills: Label[]
-}
-const InboxList: React.FC<Props> = ({ status, sender, date, message, skills }) => {
+const InboxList: React.FC<Inbox> = ({ status, sender, date, message, skills }) => {
     let classNameForContainer = "inbox-list-item";
     switch (status) {
         case "unread":
@@ -20,6 +13,8 @@ const InboxList: React.FC<Props> = ({ status, sender, date, message, skills }) =
             break;
         case "selected":
             classNameForContainer += " inbox-list-item__selected";
+            break;
+        case "read":
             break;
         default:
             console.error("unrecognized status in InboxListItem.tsx");

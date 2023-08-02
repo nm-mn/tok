@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs"
+
 export interface Label {
     value: string;
     name: string;
@@ -36,4 +38,13 @@ export interface Skill {
     mentorshipType?: string[];
     credential?: string;
     explanation?: string;
+}
+
+export interface Inbox {
+    id: string;
+    status: string; // TODO: to enum read, unread, selected
+    sender: string;
+    date: Dayjs;
+    message: string;
+    skills: Label[]
 }

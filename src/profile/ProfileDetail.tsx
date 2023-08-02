@@ -57,7 +57,7 @@ const ProfileDetail: React.FC = () => {
                         },
                         languages: [data.primary_language, data.secondary_language, data.tetrary_language],
                         skills: data.skills.items.map((skill) => ({
-                            name: skill.skillId,
+                            name: skill.skillMasterSkillsId,
                             years: 0
                         })),
                         isAccepting: data.accepting ?? false

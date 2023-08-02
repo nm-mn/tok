@@ -22,7 +22,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "channelProfilesChannel_id"
+                            "channel"
                         ]
                     }
                 },
@@ -108,106 +108,6 @@ export const schema = {
                 }
             ]
         },
-        "ChannelProfile": {
-            "name": "ChannelProfile",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "channel_id": {
-                    "name": "channel_id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "profile_id": {
-                    "name": "profile_id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "profile": {
-                    "name": "profile",
-                    "isArray": false,
-                    "type": {
-                        "model": "Profile"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "profile_id"
-                        ]
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "channelProfilesChannel_id": {
-                    "name": "channelProfilesChannel_id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "ChannelProfiles",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byProfile",
-                        "fields": [
-                            "channel_id"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Message": {
             "name": "Message",
             "fields": {
@@ -229,6 +129,13 @@ export const schema = {
                     "name": "message",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "profile_id": {
+                    "name": "profile_id",
+                    "isArray": false,
+                    "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -266,9 +173,11 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byChannel",
+                        "name": "byChannelAndDate",
+                        "queryField": "byChannelAndDate",
                         "fields": [
-                            "channel_id"
+                            "channel_id",
+                            "date"
                         ]
                     }
                 },
@@ -307,8 +216,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "profileID": {
-                    "name": "profileID",
+                "profile_id": {
+                    "name": "profile_id",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -465,6 +374,22 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
                             "profileSkillsId"
+                        ]
+                    }
+                },
+                "channels": {
+                    "name": "channels",
+                    "isArray": true,
+                    "type": {
+                        "model": "ChannelProfile"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "profile"
                         ]
                     }
                 },
@@ -718,10 +643,108 @@ export const schema = {
                     }
                 }
             ]
+        },
+        "ChannelProfile": {
+            "name": "ChannelProfile",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "channelChannel_id": {
+                    "name": "channelChannel_id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "profileId": {
+                    "name": "profileId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "channel": {
+                    "name": "channel",
+                    "isArray": false,
+                    "type": {
+                        "model": "Channel"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "channelChannel_id"
+                        ]
+                    }
+                },
+                "profile": {
+                    "name": "profile",
+                    "isArray": false,
+                    "type": {
+                        "model": "Profile"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "profileId"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "ChannelProfiles",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byChannel",
+                        "fields": [
+                            "channelChannel_id"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byProfile",
+                        "fields": [
+                            "profileId"
+                        ]
+                    }
+                }
+            ]
         }
     },
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "e2df85d20c4dc90ddf8ffce862e80104"
+    "version": "17a64818b75ca7459033ee196de8ad43"
 };

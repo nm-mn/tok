@@ -9,14 +9,13 @@ export const onCreateChannel = /* GraphQL */ `
       profiles {
         items {
           id
-          channel_id
-          profile_id
+          channelChannel_id
+          profileId
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelProfilesChannel_id
         }
         nextToken
         startedAt
@@ -26,6 +25,7 @@ export const onCreateChannel = /* GraphQL */ `
           id
           channel_id
           message
+          profile_id
           date
           createdAt
           updatedAt
@@ -40,7 +40,7 @@ export const onCreateChannel = /* GraphQL */ `
         items {
           id
           channel_id
-          profileID
+          profile_id
           date
           createdAt
           updatedAt
@@ -66,14 +66,13 @@ export const onUpdateChannel = /* GraphQL */ `
       profiles {
         items {
           id
-          channel_id
-          profile_id
+          channelChannel_id
+          profileId
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelProfilesChannel_id
         }
         nextToken
         startedAt
@@ -83,6 +82,7 @@ export const onUpdateChannel = /* GraphQL */ `
           id
           channel_id
           message
+          profile_id
           date
           createdAt
           updatedAt
@@ -97,7 +97,7 @@ export const onUpdateChannel = /* GraphQL */ `
         items {
           id
           channel_id
-          profileID
+          profile_id
           date
           createdAt
           updatedAt
@@ -123,14 +123,13 @@ export const onDeleteChannel = /* GraphQL */ `
       profiles {
         items {
           id
-          channel_id
-          profile_id
+          channelChannel_id
+          profileId
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          channelProfilesChannel_id
         }
         nextToken
         startedAt
@@ -140,6 +139,7 @@ export const onDeleteChannel = /* GraphQL */ `
           id
           channel_id
           message
+          profile_id
           date
           createdAt
           updatedAt
@@ -154,7 +154,7 @@ export const onDeleteChannel = /* GraphQL */ `
         items {
           id
           channel_id
-          profileID
+          profile_id
           date
           createdAt
           updatedAt
@@ -173,151 +173,13 @@ export const onDeleteChannel = /* GraphQL */ `
     }
   }
 `;
-export const onCreateChannelProfile = /* GraphQL */ `
-  subscription OnCreateChannelProfile(
-    $filter: ModelSubscriptionChannelProfileFilterInput
-  ) {
-    onCreateChannelProfile(filter: $filter) {
-      id
-      channel_id
-      profile_id
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      channelProfilesChannel_id
-    }
-  }
-`;
-export const onUpdateChannelProfile = /* GraphQL */ `
-  subscription OnUpdateChannelProfile(
-    $filter: ModelSubscriptionChannelProfileFilterInput
-  ) {
-    onUpdateChannelProfile(filter: $filter) {
-      id
-      channel_id
-      profile_id
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      channelProfilesChannel_id
-    }
-  }
-`;
-export const onDeleteChannelProfile = /* GraphQL */ `
-  subscription OnDeleteChannelProfile(
-    $filter: ModelSubscriptionChannelProfileFilterInput
-  ) {
-    onDeleteChannelProfile(filter: $filter) {
-      id
-      channel_id
-      profile_id
-      profile {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      channelProfilesChannel_id
-    }
-  }
-`;
 export const onCreateMessage = /* GraphQL */ `
   subscription OnCreateMessage($filter: ModelSubscriptionMessageFilterInput) {
     onCreateMessage(filter: $filter) {
       id
       channel_id
       message
-      sender {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      profile_id
       date
       createdAt
       updatedAt
@@ -333,28 +195,7 @@ export const onUpdateMessage = /* GraphQL */ `
       id
       channel_id
       message
-      sender {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      profile_id
       date
       createdAt
       updatedAt
@@ -370,28 +211,7 @@ export const onDeleteMessage = /* GraphQL */ `
       id
       channel_id
       message
-      sender {
-        id
-        first_name
-        last_name
-        email
-        accepting
-        region_location
-        country_location
-        primary_language
-        secondary_language
-        tetrary_language
-        bio
-        skills {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      profile_id
       date
       createdAt
       updatedAt
@@ -408,7 +228,7 @@ export const onCreateReadStatus = /* GraphQL */ `
     onCreateReadStatus(filter: $filter) {
       id
       channel_id
-      profileID
+      profile_id
       date
       createdAt
       updatedAt
@@ -425,7 +245,7 @@ export const onUpdateReadStatus = /* GraphQL */ `
     onUpdateReadStatus(filter: $filter) {
       id
       channel_id
-      profileID
+      profile_id
       date
       createdAt
       updatedAt
@@ -442,7 +262,7 @@ export const onDeleteReadStatus = /* GraphQL */ `
     onDeleteReadStatus(filter: $filter) {
       id
       channel_id
-      profileID
+      profile_id
       date
       createdAt
       updatedAt
@@ -478,6 +298,20 @@ export const onCreateProfile = /* GraphQL */ `
           _lastChangedAt
           profileSkillsId
           skillMasterSkillsId
+        }
+        nextToken
+        startedAt
+      }
+      channels {
+        items {
+          id
+          channelChannel_id
+          profileId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
@@ -520,6 +354,20 @@ export const onUpdateProfile = /* GraphQL */ `
         nextToken
         startedAt
       }
+      channels {
+        items {
+          id
+          channelChannel_id
+          profileId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -554,6 +402,20 @@ export const onDeleteProfile = /* GraphQL */ `
           _lastChangedAt
           profileSkillsId
           skillMasterSkillsId
+        }
+        nextToken
+        startedAt
+      }
+      channels {
+        items {
+          id
+          channelChannel_id
+          profileId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
         startedAt
@@ -600,6 +462,10 @@ export const onCreateSkillInstance = /* GraphQL */ `
         tetrary_language
         bio
         skills {
+          nextToken
+          startedAt
+        }
+        channels {
           nextToken
           startedAt
         }
@@ -656,6 +522,10 @@ export const onUpdateSkillInstance = /* GraphQL */ `
           nextToken
           startedAt
         }
+        channels {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -706,6 +576,10 @@ export const onDeleteSkillInstance = /* GraphQL */ `
         tetrary_language
         bio
         skills {
+          nextToken
+          startedAt
+        }
+        channels {
           nextToken
           startedAt
         }
@@ -809,6 +683,192 @@ export const onDeleteSkillMaster = /* GraphQL */ `
         }
         nextToken
         startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateChannelProfile = /* GraphQL */ `
+  subscription OnCreateChannelProfile(
+    $filter: ModelSubscriptionChannelProfileFilterInput
+  ) {
+    onCreateChannelProfile(filter: $filter) {
+      id
+      channelChannel_id
+      profileId
+      channel {
+        channel_id
+        profiles {
+          nextToken
+          startedAt
+        }
+        messages {
+          nextToken
+          startedAt
+        }
+        readStatus {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      profile {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        channels {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateChannelProfile = /* GraphQL */ `
+  subscription OnUpdateChannelProfile(
+    $filter: ModelSubscriptionChannelProfileFilterInput
+  ) {
+    onUpdateChannelProfile(filter: $filter) {
+      id
+      channelChannel_id
+      profileId
+      channel {
+        channel_id
+        profiles {
+          nextToken
+          startedAt
+        }
+        messages {
+          nextToken
+          startedAt
+        }
+        readStatus {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      profile {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        channels {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteChannelProfile = /* GraphQL */ `
+  subscription OnDeleteChannelProfile(
+    $filter: ModelSubscriptionChannelProfileFilterInput
+  ) {
+    onDeleteChannelProfile(filter: $filter) {
+      id
+      channelChannel_id
+      profileId
+      channel {
+        channel_id
+        profiles {
+          nextToken
+          startedAt
+        }
+        messages {
+          nextToken
+          startedAt
+        }
+        readStatus {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      profile {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        channels {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt

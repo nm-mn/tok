@@ -38,40 +38,6 @@ export declare const Channel: (new (init: ModelInit<Channel>) => Channel) & {
   copyOf(source: Channel, mutator: (draft: MutableModel<Channel>) => MutableModel<Channel> | void): Channel;
 }
 
-type EagerChannelProfile = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly channel_id: string;
-  readonly profile_id: string;
-  readonly profile?: Profile | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  readonly channelProfilesChannel_id?: string | null;
-}
-
-type LazyChannelProfile = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly channel_id: string;
-  readonly profile_id: string;
-  readonly profile: AsyncItem<Profile | undefined>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  readonly channelProfilesChannel_id?: string | null;
-}
-
-export declare type ChannelProfile = LazyLoading extends LazyLoadingDisabled ? EagerChannelProfile : LazyChannelProfile
-
-export declare const ChannelProfile: (new (init: ModelInit<ChannelProfile>) => ChannelProfile) & {
-  copyOf(source: ChannelProfile, mutator: (draft: MutableModel<ChannelProfile>) => MutableModel<ChannelProfile> | void): ChannelProfile;
-}
-
 type EagerMessage = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Message, 'id'>;
@@ -80,6 +46,7 @@ type EagerMessage = {
   readonly id: string;
   readonly channel_id: string;
   readonly message: string;
+  readonly profile_id: string;
   readonly date: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -93,6 +60,7 @@ type LazyMessage = {
   readonly id: string;
   readonly channel_id: string;
   readonly message: string;
+  readonly profile_id: string;
   readonly date: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -111,7 +79,7 @@ type EagerReadStatus = {
   };
   readonly id: string;
   readonly channel_id: string;
-  readonly profileID: string;
+  readonly profile_id: string;
   readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -124,7 +92,7 @@ type LazyReadStatus = {
   };
   readonly id: string;
   readonly channel_id: string;
-  readonly profileID: string;
+  readonly profile_id: string;
   readonly date?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -153,6 +121,7 @@ type EagerProfile = {
   readonly tetrary_language?: string | null;
   readonly bio?: string | null;
   readonly skills?: (SkillInstance | null)[] | null;
+  readonly channels?: (ChannelProfile | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -174,6 +143,7 @@ type LazyProfile = {
   readonly tetrary_language?: string | null;
   readonly bio?: string | null;
   readonly skills: AsyncCollection<SkillInstance>;
+  readonly channels: AsyncCollection<ChannelProfile>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -250,4 +220,38 @@ export declare type SkillMaster = LazyLoading extends LazyLoadingDisabled ? Eage
 
 export declare const SkillMaster: (new (init: ModelInit<SkillMaster>) => SkillMaster) & {
   copyOf(source: SkillMaster, mutator: (draft: MutableModel<SkillMaster>) => MutableModel<SkillMaster> | void): SkillMaster;
+}
+
+type EagerChannelProfile = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channelChannel_id?: string | null;
+  readonly profileId?: string | null;
+  readonly channel: Channel;
+  readonly profile: Profile;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyChannelProfile = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ChannelProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly channelChannel_id?: string | null;
+  readonly profileId?: string | null;
+  readonly channel: AsyncItem<Channel>;
+  readonly profile: AsyncItem<Profile>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type ChannelProfile = LazyLoading extends LazyLoadingDisabled ? EagerChannelProfile : LazyChannelProfile
+
+export declare const ChannelProfile: (new (init: ModelInit<ChannelProfile>) => ChannelProfile) & {
+  copyOf(source: ChannelProfile, mutator: (draft: MutableModel<ChannelProfile>) => MutableModel<ChannelProfile> | void): ChannelProfile;
 }

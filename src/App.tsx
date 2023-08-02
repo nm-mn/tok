@@ -21,7 +21,7 @@ export const AuthContext = createContext({
 
 export const AuthenticatedContext = createContext({
   // isAuthenticated: localStorage.getItem(LOCALSTORAGE_KEY_AUTHENTICATION).toLowerCase() === "true",
-  isAuthenticated: true,
+  isAuthenticated: false,
   setIsAuthenticated: (newAuthentication: boolean) => { }
 });
 

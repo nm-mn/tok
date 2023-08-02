@@ -47,6 +47,7 @@
     line-height: 20px;
     padding: 24px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .inbox-list-item__avatar-container {
@@ -86,7 +87,7 @@
 
 
 .inbox-list-item__selected {
-    background-color: #e4d7d380;
+    background-color: #e4d7d3a1;
 }
 
 .inbox-content {

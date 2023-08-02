@@ -5,10 +5,10 @@ import ProfileCard from "./ProfileCard"
 import CircularProgress from '@mui/material/CircularProgress'
 import "../common/common.css"
 import NoData from "../common/NoData"
-import { API, graphqlOperation, } from 'aws-amplify';
-import { listProfiles } from "../graphql/custom/custom_queries"
+import { API } from 'aws-amplify';
+import { listProfiles } from "../customgraphql/custom_queries"
 import { GraphQLQuery } from '@aws-amplify/api';
-import { ListProfilesQuery } from "../interfaces/API"
+import { ListProfilesQuery } from "../interfaces/customAPI"
 
 const validateLisProfileResponse = (response: any) => {
     if (response.data == undefined || response.data.listProfiles == undefined || response.data.listProfiles.items == undefined) {

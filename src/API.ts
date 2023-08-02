@@ -2,6 +2,288 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type CreateChannelInput = {
+  channel_id: string,
+  _version?: number | null,
+};
+
+export type ModelChannelConditionInput = {
+  and?: Array< ModelChannelConditionInput | null > | null,
+  or?: Array< ModelChannelConditionInput | null > | null,
+  not?: ModelChannelConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export enum ModelAttributeTypes {
+  binary = "binary",
+  binarySet = "binarySet",
+  bool = "bool",
+  list = "list",
+  map = "map",
+  number = "number",
+  numberSet = "numberSet",
+  string = "string",
+  stringSet = "stringSet",
+  _null = "_null",
+}
+
+
+export type Channel = {
+  __typename: "Channel",
+  channel_id: string,
+  profiles?: ModelChannelProfileConnection | null,
+  messages?: ModelMessageConnection | null,
+  readStatus?: ModelReadStatusConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelChannelProfileConnection = {
+  __typename: "ModelChannelProfileConnection",
+  items:  Array<ChannelProfile | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ChannelProfile = {
+  __typename: "ChannelProfile",
+  id: string,
+  channelChannel_id: string,
+  profileId: string,
+  channel: Channel,
+  profile: Profile,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type Profile = {
+  __typename: "Profile",
+  id: string,
+  first_name: string,
+  last_name: string,
+  email: string,
+  accepting: boolean,
+  region_location?: string | null,
+  country_location?: string | null,
+  primary_language?: string | null,
+  secondary_language?: string | null,
+  tetrary_language?: string | null,
+  bio?: string | null,
+  skills?: ModelSkillInstanceConnection | null,
+  channels?: ModelChannelProfileConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelSkillInstanceConnection = {
+  __typename: "ModelSkillInstanceConnection",
+  items:  Array<SkillInstance | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type SkillInstance = {
+  __typename: "SkillInstance",
+  id: string,
+  years?: number | null,
+  description?: string | null,
+  skill?: SkillMaster | null,
+  profile?: Profile | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+  profileSkillsId?: string | null,
+  skillMasterSkillsId?: string | null,
+};
+
+export type SkillMaster = {
+  __typename: "SkillMaster",
+  id: string,
+  name: string,
+  skills?: ModelSkillInstanceConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelMessageConnection = {
+  __typename: "ModelMessageConnection",
+  items:  Array<Message | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type Message = {
+  __typename: "Message",
+  id: string,
+  channel_id: string,
+  message: string,
+  profile_id: string,
+  date: string,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelReadStatusConnection = {
+  __typename: "ModelReadStatusConnection",
+  items:  Array<ReadStatus | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ReadStatus = {
+  __typename: "ReadStatus",
+  id: string,
+  channel_id: string,
+  profile_id: string,
+  date?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type UpdateChannelInput = {
+  channel_id: string,
+  _version?: number | null,
+};
+
+export type DeleteChannelInput = {
+  channel_id: string,
+  _version?: number | null,
+};
+
+export type CreateMessageInput = {
+  id?: string | null,
+  channel_id: string,
+  message: string,
+  profile_id: string,
+  date: string,
+  _version?: number | null,
+};
+
+export type ModelMessageConditionInput = {
+  channel_id?: ModelIDInput | null,
+  message?: ModelStringInput | null,
+  profile_id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  and?: Array< ModelMessageConditionInput | null > | null,
+  or?: Array< ModelMessageConditionInput | null > | null,
+  not?: ModelMessageConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ModelSizeInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+};
+
+export type ModelStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type UpdateMessageInput = {
+  id: string,
+  channel_id?: string | null,
+  message?: string | null,
+  profile_id?: string | null,
+  date?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteMessageInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateReadStatusInput = {
+  id?: string | null,
+  channel_id: string,
+  profile_id: string,
+  date?: string | null,
+  _version?: number | null,
+};
+
+export type ModelReadStatusConditionInput = {
+  channel_id?: ModelIDInput | null,
+  profile_id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  and?: Array< ModelReadStatusConditionInput | null > | null,
+  or?: Array< ModelReadStatusConditionInput | null > | null,
+  not?: ModelReadStatusConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type UpdateReadStatusInput = {
+  id: string,
+  channel_id?: string | null,
+  profile_id?: string | null,
+  date?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteReadStatusInput = {
+  id: string,
+  _version?: number | null,
+};
+
 export type CreateProfileInput = {
   id?: string | null,
   first_name: string,
@@ -34,107 +316,6 @@ export type ModelProfileConditionInput = {
   _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
-export type ModelBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type Profile = {
-  __typename: "Profile",
-  id: string,
-  first_name: string,
-  last_name: string,
-  email: string,
-  accepting: boolean,
-  region_location?: string | null,
-  country_location?: string | null,
-  primary_language?: string | null,
-  secondary_language?: string | null,
-  tetrary_language?: string | null,
-  bio?: string | null,
-  skills?: ModelProfileSkillConnection | null,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type ModelProfileSkillConnection = {
-  __typename: "ModelProfileSkillConnection",
-  items:  Array<ProfileSkill | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type ProfileSkill = {
-  __typename: "ProfileSkill",
-  id: string,
-  profileId: string,
-  skillId: string,
-  profile: Profile,
-  skill: Skill,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type Skill = {
-  __typename: "Skill",
-  id: string,
-  name: string,
-  accounts?: ModelProfileSkillConnection | null,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
 export type UpdateProfileInput = {
   id: string,
   first_name?: string | null,
@@ -155,73 +336,147 @@ export type DeleteProfileInput = {
   _version?: number | null,
 };
 
-export type CreateSkillInput = {
+export type CreateSkillInstanceInput = {
+  id?: string | null,
+  years?: number | null,
+  description?: string | null,
+  _version?: number | null,
+  profileSkillsId?: string | null,
+  skillMasterSkillsId?: string | null,
+};
+
+export type ModelSkillInstanceConditionInput = {
+  years?: ModelIntInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelSkillInstanceConditionInput | null > | null,
+  or?: Array< ModelSkillInstanceConditionInput | null > | null,
+  not?: ModelSkillInstanceConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+  profileSkillsId?: ModelIDInput | null,
+  skillMasterSkillsId?: ModelIDInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type UpdateSkillInstanceInput = {
+  id: string,
+  years?: number | null,
+  description?: string | null,
+  _version?: number | null,
+  profileSkillsId?: string | null,
+  skillMasterSkillsId?: string | null,
+};
+
+export type DeleteSkillInstanceInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateSkillMasterInput = {
   id?: string | null,
   name: string,
   _version?: number | null,
 };
 
-export type ModelSkillConditionInput = {
+export type ModelSkillMasterConditionInput = {
   name?: ModelStringInput | null,
-  and?: Array< ModelSkillConditionInput | null > | null,
-  or?: Array< ModelSkillConditionInput | null > | null,
-  not?: ModelSkillConditionInput | null,
+  and?: Array< ModelSkillMasterConditionInput | null > | null,
+  or?: Array< ModelSkillMasterConditionInput | null > | null,
+  not?: ModelSkillMasterConditionInput | null,
   _deleted?: ModelBooleanInput | null,
 };
 
-export type UpdateSkillInput = {
+export type UpdateSkillMasterInput = {
   id: string,
   name?: string | null,
   _version?: number | null,
 };
 
-export type DeleteSkillInput = {
+export type DeleteSkillMasterInput = {
   id: string,
   _version?: number | null,
 };
 
-export type CreateProfileSkillInput = {
+export type CreateChannelProfileInput = {
   id?: string | null,
+  channelChannel_id: string,
   profileId: string,
-  skillId: string,
   _version?: number | null,
 };
 
-export type ModelProfileSkillConditionInput = {
+export type ModelChannelProfileConditionInput = {
+  channelChannel_id?: ModelIDInput | null,
   profileId?: ModelIDInput | null,
-  skillId?: ModelIDInput | null,
-  and?: Array< ModelProfileSkillConditionInput | null > | null,
-  or?: Array< ModelProfileSkillConditionInput | null > | null,
-  not?: ModelProfileSkillConditionInput | null,
+  and?: Array< ModelChannelProfileConditionInput | null > | null,
+  or?: Array< ModelChannelProfileConditionInput | null > | null,
+  not?: ModelChannelProfileConditionInput | null,
   _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type UpdateProfileSkillInput = {
+export type UpdateChannelProfileInput = {
   id: string,
+  channelChannel_id?: string | null,
   profileId?: string | null,
-  skillId?: string | null,
   _version?: number | null,
 };
 
-export type DeleteProfileSkillInput = {
+export type DeleteChannelProfileInput = {
   id: string,
   _version?: number | null,
+};
+
+export type ModelChannelFilterInput = {
+  channel_id?: ModelIDInput | null,
+  and?: Array< ModelChannelFilterInput | null > | null,
+  or?: Array< ModelChannelFilterInput | null > | null,
+  not?: ModelChannelFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
+export type ModelChannelConnection = {
+  __typename: "ModelChannelConnection",
+  items:  Array<Channel | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelMessageFilterInput = {
+  id?: ModelIDInput | null,
+  channel_id?: ModelIDInput | null,
+  message?: ModelStringInput | null,
+  profile_id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  and?: Array< ModelMessageFilterInput | null > | null,
+  or?: Array< ModelMessageFilterInput | null > | null,
+  not?: ModelMessageFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelReadStatusFilterInput = {
+  id?: ModelIDInput | null,
+  channel_id?: ModelIDInput | null,
+  profile_id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  and?: Array< ModelReadStatusFilterInput | null > | null,
+  or?: Array< ModelReadStatusFilterInput | null > | null,
+  not?: ModelReadStatusFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelProfileFilterInput = {
@@ -242,12 +497,6 @@ export type ModelProfileFilterInput = {
   _deleted?: ModelBooleanInput | null,
 };
 
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-
 export type ModelProfileConnection = {
   __typename: "ModelProfileConnection",
   items:  Array<Profile | null >,
@@ -255,29 +504,109 @@ export type ModelProfileConnection = {
   startedAt?: number | null,
 };
 
-export type ModelSkillFilterInput = {
+export type ModelSkillInstanceFilterInput = {
+  id?: ModelIDInput | null,
+  years?: ModelIntInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelSkillInstanceFilterInput | null > | null,
+  or?: Array< ModelSkillInstanceFilterInput | null > | null,
+  not?: ModelSkillInstanceFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+  profileSkillsId?: ModelIDInput | null,
+  skillMasterSkillsId?: ModelIDInput | null,
+};
+
+export type ModelSkillMasterFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
-  and?: Array< ModelSkillFilterInput | null > | null,
-  or?: Array< ModelSkillFilterInput | null > | null,
-  not?: ModelSkillFilterInput | null,
+  and?: Array< ModelSkillMasterFilterInput | null > | null,
+  or?: Array< ModelSkillMasterFilterInput | null > | null,
+  not?: ModelSkillMasterFilterInput | null,
   _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelSkillConnection = {
-  __typename: "ModelSkillConnection",
-  items:  Array<Skill | null >,
+export type ModelSkillMasterConnection = {
+  __typename: "ModelSkillMasterConnection",
+  items:  Array<SkillMaster | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type ModelProfileSkillFilterInput = {
+export type ModelChannelProfileFilterInput = {
   id?: ModelIDInput | null,
+  channelChannel_id?: ModelIDInput | null,
   profileId?: ModelIDInput | null,
-  skillId?: ModelIDInput | null,
-  and?: Array< ModelProfileSkillFilterInput | null > | null,
-  or?: Array< ModelProfileSkillFilterInput | null > | null,
-  not?: ModelProfileSkillFilterInput | null,
+  and?: Array< ModelChannelProfileFilterInput | null > | null,
+  or?: Array< ModelChannelProfileFilterInput | null > | null,
+  not?: ModelChannelProfileFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelSubscriptionChannelFilterInput = {
+  channel_id?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionChannelFilterInput | null > | null,
+  or?: Array< ModelSubscriptionChannelFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionMessageFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  channel_id?: ModelSubscriptionIDInput | null,
+  message?: ModelSubscriptionStringInput | null,
+  profile_id?: ModelSubscriptionIDInput | null,
+  date?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionMessageFilterInput | null > | null,
+  or?: Array< ModelSubscriptionMessageFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionReadStatusFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  channel_id?: ModelSubscriptionIDInput | null,
+  profile_id?: ModelSubscriptionIDInput | null,
+  date?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionReadStatusFilterInput | null > | null,
+  or?: Array< ModelSubscriptionReadStatusFilterInput | null > | null,
   _deleted?: ModelBooleanInput | null,
 };
 
@@ -298,56 +627,374 @@ export type ModelSubscriptionProfileFilterInput = {
   _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelSubscriptionIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
-};
-
-export type ModelSubscriptionStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
-};
-
 export type ModelSubscriptionBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
 };
 
-export type ModelSubscriptionSkillFilterInput = {
+export type ModelSubscriptionSkillInstanceFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionSkillFilterInput | null > | null,
-  or?: Array< ModelSubscriptionSkillFilterInput | null > | null,
+  years?: ModelSubscriptionIntInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionSkillInstanceFilterInput | null > | null,
+  or?: Array< ModelSubscriptionSkillInstanceFilterInput | null > | null,
   _deleted?: ModelBooleanInput | null,
 };
 
-export type ModelSubscriptionProfileSkillFilterInput = {
+export type ModelSubscriptionIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
+};
+
+export type ModelSubscriptionSkillMasterFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  profileId?: ModelSubscriptionIDInput | null,
-  skillId?: ModelSubscriptionIDInput | null,
-  and?: Array< ModelSubscriptionProfileSkillFilterInput | null > | null,
-  or?: Array< ModelSubscriptionProfileSkillFilterInput | null > | null,
+  name?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionSkillMasterFilterInput | null > | null,
+  or?: Array< ModelSubscriptionSkillMasterFilterInput | null > | null,
   _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelSubscriptionChannelProfileFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  channelChannel_id?: ModelSubscriptionIDInput | null,
+  profileId?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionChannelProfileFilterInput | null > | null,
+  or?: Array< ModelSubscriptionChannelProfileFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type CreateChannelMutationVariables = {
+  input: CreateChannelInput,
+  condition?: ModelChannelConditionInput | null,
+};
+
+export type CreateChannelMutation = {
+  createChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
+        profileId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateChannelMutationVariables = {
+  input: UpdateChannelInput,
+  condition?: ModelChannelConditionInput | null,
+};
+
+export type UpdateChannelMutation = {
+  updateChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
+        profileId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteChannelMutationVariables = {
+  input: DeleteChannelInput,
+  condition?: ModelChannelConditionInput | null,
+};
+
+export type DeleteChannelMutation = {
+  deleteChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
+        profileId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateMessageMutationVariables = {
+  input: CreateMessageInput,
+  condition?: ModelMessageConditionInput | null,
+};
+
+export type CreateMessageMutation = {
+  createMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateMessageMutationVariables = {
+  input: UpdateMessageInput,
+  condition?: ModelMessageConditionInput | null,
+};
+
+export type UpdateMessageMutation = {
+  updateMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteMessageMutationVariables = {
+  input: DeleteMessageInput,
+  condition?: ModelMessageConditionInput | null,
+};
+
+export type DeleteMessageMutation = {
+  deleteMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateReadStatusMutationVariables = {
+  input: CreateReadStatusInput,
+  condition?: ModelReadStatusConditionInput | null,
+};
+
+export type CreateReadStatusMutation = {
+  createReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateReadStatusMutationVariables = {
+  input: UpdateReadStatusInput,
+  condition?: ModelReadStatusConditionInput | null,
+};
+
+export type UpdateReadStatusMutation = {
+  updateReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteReadStatusMutationVariables = {
+  input: DeleteReadStatusInput,
+  condition?: ModelReadStatusConditionInput | null,
+};
+
+export type DeleteReadStatusMutation = {
+  deleteReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
 };
 
 export type CreateProfileMutationVariables = {
@@ -370,12 +1017,30 @@ export type CreateProfileMutation = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -413,12 +1078,30 @@ export type UpdateProfileMutation = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -456,12 +1139,30 @@ export type DeleteProfileMutation = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -479,28 +1180,225 @@ export type DeleteProfileMutation = {
   } | null,
 };
 
-export type CreateSkillMutationVariables = {
-  input: CreateSkillInput,
-  condition?: ModelSkillConditionInput | null,
+export type CreateSkillInstanceMutationVariables = {
+  input: CreateSkillInstanceInput,
+  condition?: ModelSkillInstanceConditionInput | null,
 };
 
-export type CreateSkillMutation = {
-  createSkill?:  {
-    __typename: "Skill",
+export type CreateSkillInstanceMutation = {
+  createSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type UpdateSkillInstanceMutationVariables = {
+  input: UpdateSkillInstanceInput,
+  condition?: ModelSkillInstanceConditionInput | null,
+};
+
+export type UpdateSkillInstanceMutation = {
+  updateSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type DeleteSkillInstanceMutationVariables = {
+  input: DeleteSkillInstanceInput,
+  condition?: ModelSkillInstanceConditionInput | null,
+};
+
+export type DeleteSkillInstanceMutation = {
+  deleteSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type CreateSkillMasterMutationVariables = {
+  input: CreateSkillMasterInput,
+  condition?: ModelSkillMasterConditionInput | null,
+};
+
+export type CreateSkillMasterMutation = {
+  createSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -513,28 +1411,30 @@ export type CreateSkillMutation = {
   } | null,
 };
 
-export type UpdateSkillMutationVariables = {
-  input: UpdateSkillInput,
-  condition?: ModelSkillConditionInput | null,
+export type UpdateSkillMasterMutationVariables = {
+  input: UpdateSkillMasterInput,
+  condition?: ModelSkillMasterConditionInput | null,
 };
 
-export type UpdateSkillMutation = {
-  updateSkill?:  {
-    __typename: "Skill",
+export type UpdateSkillMasterMutation = {
+  updateSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -547,28 +1447,30 @@ export type UpdateSkillMutation = {
   } | null,
 };
 
-export type DeleteSkillMutationVariables = {
-  input: DeleteSkillInput,
-  condition?: ModelSkillConditionInput | null,
+export type DeleteSkillMasterMutationVariables = {
+  input: DeleteSkillMasterInput,
+  condition?: ModelSkillMasterConditionInput | null,
 };
 
-export type DeleteSkillMutation = {
-  deleteSkill?:  {
-    __typename: "Skill",
+export type DeleteSkillMasterMutation = {
+  deleteSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -581,17 +1483,41 @@ export type DeleteSkillMutation = {
   } | null,
 };
 
-export type CreateProfileSkillMutationVariables = {
-  input: CreateProfileSkillInput,
-  condition?: ModelProfileSkillConditionInput | null,
+export type CreateChannelProfileMutationVariables = {
+  input: CreateChannelProfileInput,
+  condition?: ModelChannelProfileConditionInput | null,
 };
 
-export type CreateProfileSkillMutation = {
-  createProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type CreateChannelProfileMutation = {
+  createChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -606,22 +1532,12 @@ export type CreateProfileSkillMutation = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -639,17 +1555,41 @@ export type CreateProfileSkillMutation = {
   } | null,
 };
 
-export type UpdateProfileSkillMutationVariables = {
-  input: UpdateProfileSkillInput,
-  condition?: ModelProfileSkillConditionInput | null,
+export type UpdateChannelProfileMutationVariables = {
+  input: UpdateChannelProfileInput,
+  condition?: ModelChannelProfileConditionInput | null,
 };
 
-export type UpdateProfileSkillMutation = {
-  updateProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type UpdateChannelProfileMutation = {
+  updateChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -664,22 +1604,12 @@ export type UpdateProfileSkillMutation = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -697,17 +1627,41 @@ export type UpdateProfileSkillMutation = {
   } | null,
 };
 
-export type DeleteProfileSkillMutationVariables = {
-  input: DeleteProfileSkillInput,
-  condition?: ModelProfileSkillConditionInput | null,
+export type DeleteChannelProfileMutationVariables = {
+  input: DeleteChannelProfileInput,
+  condition?: ModelChannelProfileConditionInput | null,
 };
 
-export type DeleteProfileSkillMutation = {
-  deleteProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type DeleteChannelProfileMutation = {
+  deleteChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -722,22 +1676,12 @@ export type DeleteProfileSkillMutation = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -752,6 +1696,299 @@ export type DeleteProfileSkillMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+  } | null,
+};
+
+export type GetChannelQueryVariables = {
+  channel_id: string,
+};
+
+export type GetChannelQuery = {
+  getChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
+        profileId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListChannelsQueryVariables = {
+  channel_id?: string | null,
+  filter?: ModelChannelFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListChannelsQuery = {
+  listChannels?:  {
+    __typename: "ModelChannelConnection",
+    items:  Array< {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncChannelsQueryVariables = {
+  filter?: ModelChannelFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncChannelsQuery = {
+  syncChannels?:  {
+    __typename: "ModelChannelConnection",
+    items:  Array< {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetMessageQueryVariables = {
+  id: string,
+};
+
+export type GetMessageQuery = {
+  getMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListMessagesQueryVariables = {
+  filter?: ModelMessageFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListMessagesQuery = {
+  listMessages?:  {
+    __typename: "ModelMessageConnection",
+    items:  Array< {
+      __typename: "Message",
+      id: string,
+      channel_id: string,
+      message: string,
+      profile_id: string,
+      date: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncMessagesQueryVariables = {
+  filter?: ModelMessageFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncMessagesQuery = {
+  syncMessages?:  {
+    __typename: "ModelMessageConnection",
+    items:  Array< {
+      __typename: "Message",
+      id: string,
+      channel_id: string,
+      message: string,
+      profile_id: string,
+      date: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetReadStatusQueryVariables = {
+  id: string,
+};
+
+export type GetReadStatusQuery = {
+  getReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListReadStatusesQueryVariables = {
+  filter?: ModelReadStatusFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListReadStatusesQuery = {
+  listReadStatuses?:  {
+    __typename: "ModelReadStatusConnection",
+    items:  Array< {
+      __typename: "ReadStatus",
+      id: string,
+      channel_id: string,
+      profile_id: string,
+      date?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncReadStatusesQueryVariables = {
+  filter?: ModelReadStatusFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncReadStatusesQuery = {
+  syncReadStatuses?:  {
+    __typename: "ModelReadStatusConnection",
+    items:  Array< {
+      __typename: "ReadStatus",
+      id: string,
+      channel_id: string,
+      profile_id: string,
+      date?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -774,12 +2011,30 @@ export type GetProfileQuery = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -822,7 +2077,12 @@ export type ListProfilesQuery = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -861,7 +2121,12 @@ export type SyncProfilesQuery = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -876,22 +2141,677 @@ export type SyncProfilesQuery = {
   } | null,
 };
 
-export type GetSkillQueryVariables = {
+export type GetSkillInstanceQueryVariables = {
   id: string,
 };
 
-export type GetSkillQuery = {
-  getSkill?:  {
-    __typename: "Skill",
+export type GetSkillInstanceQuery = {
+  getSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type ListSkillInstancesQueryVariables = {
+  id?: string | null,
+  filter?: ModelSkillInstanceFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListSkillInstancesQuery = {
+  listSkillInstances?:  {
+    __typename: "ModelSkillInstanceConnection",
+    items:  Array< {
+      __typename: "SkillInstance",
+      id: string,
+      years?: number | null,
+      description?: string | null,
+      skill?:  {
+        __typename: "SkillMaster",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      profileSkillsId?: string | null,
+      skillMasterSkillsId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncSkillInstancesQueryVariables = {
+  filter?: ModelSkillInstanceFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncSkillInstancesQuery = {
+  syncSkillInstances?:  {
+    __typename: "ModelSkillInstanceConnection",
+    items:  Array< {
+      __typename: "SkillInstance",
+      id: string,
+      years?: number | null,
+      description?: string | null,
+      skill?:  {
+        __typename: "SkillMaster",
+        id: string,
+        name: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null,
+      profile?:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      profileSkillsId?: string | null,
+      skillMasterSkillsId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetSkillMasterQueryVariables = {
+  id: string,
+};
+
+export type GetSkillMasterQuery = {
+  getSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListSkillMastersQueryVariables = {
+  id?: string | null,
+  filter?: ModelSkillMasterFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListSkillMastersQuery = {
+  listSkillMasters?:  {
+    __typename: "ModelSkillMasterConnection",
+    items:  Array< {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncSkillMastersQueryVariables = {
+  filter?: ModelSkillMasterFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncSkillMastersQuery = {
+  syncSkillMasters?:  {
+    __typename: "ModelSkillMasterConnection",
+    items:  Array< {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetChannelProfileQueryVariables = {
+  id: string,
+};
+
+export type GetChannelProfileQuery = {
+  getChannelProfile?:  {
+    __typename: "ChannelProfile",
+    id: string,
+    channelChannel_id: string,
+    profileId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    profile:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListChannelProfilesQueryVariables = {
+  filter?: ModelChannelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListChannelProfilesQuery = {
+  listChannelProfiles?:  {
+    __typename: "ModelChannelProfileConnection",
+    items:  Array< {
+      __typename: "ChannelProfile",
+      id: string,
+      channelChannel_id: string,
+      profileId: string,
+      channel:  {
+        __typename: "Channel",
+        channel_id: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      profile:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncChannelProfilesQueryVariables = {
+  filter?: ModelChannelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncChannelProfilesQuery = {
+  syncChannelProfiles?:  {
+    __typename: "ModelChannelProfileConnection",
+    items:  Array< {
+      __typename: "ChannelProfile",
+      id: string,
+      channelChannel_id: string,
+      profileId: string,
+      channel:  {
+        __typename: "Channel",
+        channel_id: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      profile:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type ByChannelAndDateQueryVariables = {
+  channel_id: string,
+  date?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelMessageFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ByChannelAndDateQuery = {
+  byChannelAndDate?:  {
+    __typename: "ModelMessageConnection",
+    items:  Array< {
+      __typename: "Message",
+      id: string,
+      channel_id: string,
+      message: string,
+      profile_id: string,
+      date: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type ReadStatusesByChannel_idQueryVariables = {
+  channel_id: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelReadStatusFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ReadStatusesByChannel_idQuery = {
+  readStatusesByChannel_id?:  {
+    __typename: "ModelReadStatusConnection",
+    items:  Array< {
+      __typename: "ReadStatus",
+      id: string,
+      channel_id: string,
+      profile_id: string,
+      date?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type ChannelProfilesByChannelChannel_idQueryVariables = {
+  channelChannel_id: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelChannelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ChannelProfilesByChannelChannel_idQuery = {
+  channelProfilesByChannelChannel_id?:  {
+    __typename: "ModelChannelProfileConnection",
+    items:  Array< {
+      __typename: "ChannelProfile",
+      id: string,
+      channelChannel_id: string,
+      profileId: string,
+      channel:  {
+        __typename: "Channel",
+        channel_id: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      profile:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type ChannelProfilesByProfileIdQueryVariables = {
+  profileId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelChannelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ChannelProfilesByProfileIdQuery = {
+  channelProfilesByProfileId?:  {
+    __typename: "ModelChannelProfileConnection",
+    items:  Array< {
+      __typename: "ChannelProfile",
+      id: string,
+      channelChannel_id: string,
+      profileId: string,
+      channel:  {
+        __typename: "Channel",
+        channel_id: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      profile:  {
+        __typename: "Profile",
+        id: string,
+        first_name: string,
+        last_name: string,
+        email: string,
+        accepting: boolean,
+        region_location?: string | null,
+        country_location?: string | null,
+        primary_language?: string | null,
+        secondary_language?: string | null,
+        tetrary_language?: string | null,
+        bio?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateChannelSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelFilterInput | null,
+};
+
+export type OnCreateChannelSubscription = {
+  onCreateChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -909,116 +2829,65 @@ export type GetSkillQuery = {
   } | null,
 };
 
-export type ListSkillsQueryVariables = {
-  id?: string | null,
-  filter?: ModelSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
+export type OnUpdateChannelSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelFilterInput | null,
 };
 
-export type ListSkillsQuery = {
-  listSkills?:  {
-    __typename: "ModelSkillConnection",
-    items:  Array< {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncSkillsQueryVariables = {
-  filter?: ModelSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncSkillsQuery = {
-  syncSkills?:  {
-    __typename: "ModelSkillConnection",
-    items:  Array< {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetProfileSkillQueryVariables = {
-  id: string,
-};
-
-export type GetProfileSkillQuery = {
-  getProfileSkill?:  {
-    __typename: "ProfileSkill",
-    id: string,
-    profileId: string,
-    skillId: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      first_name: string,
-      last_name: string,
-      email: string,
-      accepting: boolean,
-      region_location?: string | null,
-      country_location?: string | null,
-      primary_language?: string | null,
-      secondary_language?: string | null,
-      tetrary_language?: string | null,
-      bio?: string | null,
-      skills?:  {
-        __typename: "ModelProfileSkillConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
+export type OnUpdateChannelSubscription = {
+  onUpdateChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
+        profileId: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
+        id: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -1027,224 +2896,187 @@ export type GetProfileSkillQuery = {
   } | null,
 };
 
-export type ListProfileSkillsQueryVariables = {
-  filter?: ModelProfileSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnDeleteChannelSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelFilterInput | null,
 };
 
-export type ListProfileSkillsQuery = {
-  listProfileSkills?:  {
-    __typename: "ModelProfileSkillConnection",
-    items:  Array< {
-      __typename: "ProfileSkill",
-      id: string,
-      profileId: string,
-      skillId: string,
-      profile:  {
-        __typename: "Profile",
+export type OnDeleteChannelSubscription = {
+  onDeleteChannel?:  {
+    __typename: "Channel",
+    channel_id: string,
+    profiles?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
         id: string,
-        first_name: string,
-        last_name: string,
-        email: string,
-        accepting: boolean,
-        region_location?: string | null,
-        country_location?: string | null,
-        primary_language?: string | null,
-        secondary_language?: string | null,
-        tetrary_language?: string | null,
-        bio?: string | null,
+        channelChannel_id: string,
+        profileId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-      },
-      skill:  {
-        __typename: "Skill",
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    messages?:  {
+      __typename: "ModelMessageConnection",
+      items:  Array< {
+        __typename: "Message",
         id: string,
-        name: string,
+        channel_id: string,
+        message: string,
+        profile_id: string,
+        date: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    readStatus?:  {
+      __typename: "ModelReadStatusConnection",
+      items:  Array< {
+        __typename: "ReadStatus",
+        id: string,
+        channel_id: string,
+        profile_id: string,
+        date?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type SyncProfileSkillsQueryVariables = {
-  filter?: ModelProfileSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
+export type OnCreateMessageSubscriptionVariables = {
+  filter?: ModelSubscriptionMessageFilterInput | null,
 };
 
-export type SyncProfileSkillsQuery = {
-  syncProfileSkills?:  {
-    __typename: "ModelProfileSkillConnection",
-    items:  Array< {
-      __typename: "ProfileSkill",
-      id: string,
-      profileId: string,
-      skillId: string,
-      profile:  {
-        __typename: "Profile",
-        id: string,
-        first_name: string,
-        last_name: string,
-        email: string,
-        accepting: boolean,
-        region_location?: string | null,
-        country_location?: string | null,
-        primary_language?: string | null,
-        secondary_language?: string | null,
-        tetrary_language?: string | null,
-        bio?: string | null,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      skill:  {
-        __typename: "Skill",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+export type OnCreateMessageSubscription = {
+  onCreateMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type ProfileSkillsByProfileIdQueryVariables = {
-  profileId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelProfileSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnUpdateMessageSubscriptionVariables = {
+  filter?: ModelSubscriptionMessageFilterInput | null,
 };
 
-export type ProfileSkillsByProfileIdQuery = {
-  profileSkillsByProfileId?:  {
-    __typename: "ModelProfileSkillConnection",
-    items:  Array< {
-      __typename: "ProfileSkill",
-      id: string,
-      profileId: string,
-      skillId: string,
-      profile:  {
-        __typename: "Profile",
-        id: string,
-        first_name: string,
-        last_name: string,
-        email: string,
-        accepting: boolean,
-        region_location?: string | null,
-        country_location?: string | null,
-        primary_language?: string | null,
-        secondary_language?: string | null,
-        tetrary_language?: string | null,
-        bio?: string | null,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      skill:  {
-        __typename: "Skill",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+export type OnUpdateMessageSubscription = {
+  onUpdateMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type ProfileSkillsBySkillIdQueryVariables = {
-  skillId: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelProfileSkillFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnDeleteMessageSubscriptionVariables = {
+  filter?: ModelSubscriptionMessageFilterInput | null,
 };
 
-export type ProfileSkillsBySkillIdQuery = {
-  profileSkillsBySkillId?:  {
-    __typename: "ModelProfileSkillConnection",
-    items:  Array< {
-      __typename: "ProfileSkill",
-      id: string,
-      profileId: string,
-      skillId: string,
-      profile:  {
-        __typename: "Profile",
-        id: string,
-        first_name: string,
-        last_name: string,
-        email: string,
-        accepting: boolean,
-        region_location?: string | null,
-        country_location?: string | null,
-        primary_language?: string | null,
-        secondary_language?: string | null,
-        tetrary_language?: string | null,
-        bio?: string | null,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      skill:  {
-        __typename: "Skill",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+export type OnDeleteMessageSubscription = {
+  onDeleteMessage?:  {
+    __typename: "Message",
+    id: string,
+    channel_id: string,
+    message: string,
+    profile_id: string,
+    date: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateReadStatusSubscriptionVariables = {
+  filter?: ModelSubscriptionReadStatusFilterInput | null,
+};
+
+export type OnCreateReadStatusSubscription = {
+  onCreateReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateReadStatusSubscriptionVariables = {
+  filter?: ModelSubscriptionReadStatusFilterInput | null,
+};
+
+export type OnUpdateReadStatusSubscription = {
+  onUpdateReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteReadStatusSubscriptionVariables = {
+  filter?: ModelSubscriptionReadStatusFilterInput | null,
+};
+
+export type OnDeleteReadStatusSubscription = {
+  onDeleteReadStatus?:  {
+    __typename: "ReadStatus",
+    id: string,
+    channel_id: string,
+    profile_id: string,
+    date?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1267,12 +3099,30 @@ export type OnCreateProfileSubscription = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1309,12 +3159,30 @@ export type OnUpdateProfileSubscription = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1351,12 +3219,30 @@ export type OnDeleteProfileSubscription = {
     tetrary_language?: string | null,
     bio?: string | null,
     skills?:  {
-      __typename: "ModelProfileSkillConnection",
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
+        years?: number | null,
+        description?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    channels?:  {
+      __typename: "ModelChannelProfileConnection",
+      items:  Array< {
+        __typename: "ChannelProfile",
+        id: string,
+        channelChannel_id: string,
         profileId: string,
-        skillId: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1374,27 +3260,221 @@ export type OnDeleteProfileSubscription = {
   } | null,
 };
 
-export type OnCreateSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionSkillFilterInput | null,
+export type OnCreateSkillInstanceSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillInstanceFilterInput | null,
 };
 
-export type OnCreateSkillSubscription = {
-  onCreateSkill?:  {
-    __typename: "Skill",
+export type OnCreateSkillInstanceSubscription = {
+  onCreateSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type OnUpdateSkillInstanceSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillInstanceFilterInput | null,
+};
+
+export type OnUpdateSkillInstanceSubscription = {
+  onUpdateSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type OnDeleteSkillInstanceSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillInstanceFilterInput | null,
+};
+
+export type OnDeleteSkillInstanceSubscription = {
+  onDeleteSkillInstance?:  {
+    __typename: "SkillInstance",
+    id: string,
+    years?: number | null,
+    description?: string | null,
+    skill?:  {
+      __typename: "SkillMaster",
+      id: string,
+      name: string,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    profile?:  {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    profileSkillsId?: string | null,
+    skillMasterSkillsId?: string | null,
+  } | null,
+};
+
+export type OnCreateSkillMasterSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillMasterFilterInput | null,
+};
+
+export type OnCreateSkillMasterSubscription = {
+  onCreateSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1407,27 +3487,29 @@ export type OnCreateSkillSubscription = {
   } | null,
 };
 
-export type OnUpdateSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionSkillFilterInput | null,
+export type OnUpdateSkillMasterSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillMasterFilterInput | null,
 };
 
-export type OnUpdateSkillSubscription = {
-  onUpdateSkill?:  {
-    __typename: "Skill",
+export type OnUpdateSkillMasterSubscription = {
+  onUpdateSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1440,27 +3522,29 @@ export type OnUpdateSkillSubscription = {
   } | null,
 };
 
-export type OnDeleteSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionSkillFilterInput | null,
+export type OnDeleteSkillMasterSubscriptionVariables = {
+  filter?: ModelSubscriptionSkillMasterFilterInput | null,
 };
 
-export type OnDeleteSkillSubscription = {
-  onDeleteSkill?:  {
-    __typename: "Skill",
+export type OnDeleteSkillMasterSubscription = {
+  onDeleteSkillMaster?:  {
+    __typename: "SkillMaster",
     id: string,
     name: string,
-    accounts?:  {
-      __typename: "ModelProfileSkillConnection",
+    skills?:  {
+      __typename: "ModelSkillInstanceConnection",
       items:  Array< {
-        __typename: "ProfileSkill",
+        __typename: "SkillInstance",
         id: string,
-        profileId: string,
-        skillId: string,
+        years?: number | null,
+        description?: string | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        profileSkillsId?: string | null,
+        skillMasterSkillsId?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1473,16 +3557,40 @@ export type OnDeleteSkillSubscription = {
   } | null,
 };
 
-export type OnCreateProfileSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileSkillFilterInput | null,
+export type OnCreateChannelProfileSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelProfileFilterInput | null,
 };
 
-export type OnCreateProfileSkillSubscription = {
-  onCreateProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type OnCreateChannelProfileSubscription = {
+  onCreateChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -1497,22 +3605,12 @@ export type OnCreateProfileSkillSubscription = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -1530,16 +3628,40 @@ export type OnCreateProfileSkillSubscription = {
   } | null,
 };
 
-export type OnUpdateProfileSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileSkillFilterInput | null,
+export type OnUpdateChannelProfileSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelProfileFilterInput | null,
 };
 
-export type OnUpdateProfileSkillSubscription = {
-  onUpdateProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type OnUpdateChannelProfileSubscription = {
+  onUpdateChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -1554,22 +3676,12 @@ export type OnUpdateProfileSkillSubscription = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -1587,16 +3699,40 @@ export type OnUpdateProfileSkillSubscription = {
   } | null,
 };
 
-export type OnDeleteProfileSkillSubscriptionVariables = {
-  filter?: ModelSubscriptionProfileSkillFilterInput | null,
+export type OnDeleteChannelProfileSubscriptionVariables = {
+  filter?: ModelSubscriptionChannelProfileFilterInput | null,
 };
 
-export type OnDeleteProfileSkillSubscription = {
-  onDeleteProfileSkill?:  {
-    __typename: "ProfileSkill",
+export type OnDeleteChannelProfileSubscription = {
+  onDeleteChannelProfile?:  {
+    __typename: "ChannelProfile",
     id: string,
+    channelChannel_id: string,
     profileId: string,
-    skillId: string,
+    channel:  {
+      __typename: "Channel",
+      channel_id: string,
+      profiles?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      messages?:  {
+        __typename: "ModelMessageConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      readStatus?:  {
+        __typename: "ModelReadStatusConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     profile:  {
       __typename: "Profile",
       id: string,
@@ -1611,22 +3747,12 @@ export type OnDeleteProfileSkillSubscription = {
       tetrary_language?: string | null,
       bio?: string | null,
       skills?:  {
-        __typename: "ModelProfileSkillConnection",
+        __typename: "ModelSkillInstanceConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    skill:  {
-      __typename: "Skill",
-      id: string,
-      name: string,
-      accounts?:  {
-        __typename: "ModelProfileSkillConnection",
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
