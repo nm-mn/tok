@@ -5,7 +5,10 @@ import { Label, Inbox } from "../interfaces/common"
 import Avatar from "@mui/material/Avatar";
 import { DAYJS_FORMAT } from "../constants/internal_common"
 
-const InboxList: React.FC<Inbox> = ({ status, sender, date, message, skills }) => {
+interface Props extends Inbox {
+    onSelectChannel: (id: string) => void
+}
+const InboxListItem: React.FC<Props> = ({ onSelectChannel, id, status, sender, date, message, skills }) => {
     let classNameForContainer = "inbox-list-item";
     switch (status) {
         case "unread":
@@ -19,7 +22,7 @@ const InboxList: React.FC<Inbox> = ({ status, sender, date, message, skills }) =
         default:
             console.error("unrecognized status in InboxListItem.tsx");
     }
-    return <div className={classNameForContainer}>
+    return <div className={classNameForContainer} onClick={() => onSelectChannel(id)}>
         <div className="inbox-list-item__avatar-container">
             <Avatar sx={{ width: '80px', height: '80px' }} />
         </div>
@@ -34,4 +37,4 @@ const InboxList: React.FC<Inbox> = ({ status, sender, date, message, skills }) =
     </div>;
 }
 
-export default InboxList;
+export default InboxListItem;

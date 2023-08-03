@@ -39,8 +39,6 @@ const ProfileDetail: React.FC = () => {
             try {
                 const json = await API.graphql<GraphQLQuery<GetProfileQuery>>({ query: getProfile, variables: { id: id } })
                 if (!ignore) {
-                    console.log(json)
-                    setIsLoading(false);
                     // validate data
                     // if (validateLisProfileResponse(json)) {
                     //     // set data
@@ -62,6 +60,7 @@ const ProfileDetail: React.FC = () => {
                         })),
                         isAccepting: data.accepting ?? false
                     };
+                    setIsLoading(false);
                     setProfile(convertedProfile)
                 } else {
                     setErrorMessage("Server Side Error Please contact webpage owner")

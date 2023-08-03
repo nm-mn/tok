@@ -48,3 +48,10 @@ export interface Inbox {
     message: string;
     skills: Label[]
 }
+
+export interface Message {
+    isSelf: boolean;
+    isLast: boolean; // variable used to determine whether to show the avatar next to the message bubble
+    datetime: Dayjs;
+    message: string;
+}

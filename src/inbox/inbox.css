@@ -114,6 +114,9 @@
 .inbox-content__body {
     flex-grow: 1;
     padding: 16px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .inbox-content__footer {
@@ -150,7 +153,7 @@
     border-radius: 10px;
     max-width: 500px;
     padding: 8px 12px;
-    white-space: pre;
+    white-space: pre-wrap;
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 8px;

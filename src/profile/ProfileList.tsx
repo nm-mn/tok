@@ -9,13 +9,8 @@ import { API } from 'aws-amplify';
 import { listProfiles } from "../customgraphql/custom_queries"
 import { GraphQLQuery } from '@aws-amplify/api';
 import { ListProfilesQuery } from "../interfaces/customAPI"
+import uuid from "react-uuid";
 
-const validateLisProfileResponse = (response: any) => {
-    if (response.data == undefined || response.data.listProfiles == undefined || response.data.listProfiles.items == undefined) {
-        return false;
-    }
-    return true;
-}
 const ProfileList: React.FC = () => {
     const [profiles, setProfiles] = useState([] as ProfileCardInterface[]);
     const [query, setQuery] = useState("");
@@ -32,8 +27,6 @@ const ProfileList: React.FC = () => {
                     setIsLoading(false);
                     // validate data
                     if (validateLisProfileResponse(json)) {
-                        console.log("in Profile List");
-                        console.log(json)
                         // set data
                         const convertedProfiles =
                             json.data!.listProfiles!.items!
@@ -82,7 +75,7 @@ const ProfileList: React.FC = () => {
                 {
                     profiles.map((profile) => (
                         <ProfileCard
-                            key={profile.id}
+                            key={uuid()}
                             id={profile.id}
                             firstName={profile.firstName}
                             lastName={profile.lastName}
@@ -99,3 +92,11 @@ const ProfileList: React.FC = () => {
 }
 
 export default ProfileList;
+
+
+const validateLisProfileResponse = (response: any) => {
+    if (response.data == undefined || response.data.listProfiles == undefined || response.data.listProfiles.items == undefined) {
+        return false;
+    }
+    return true;
+}

@@ -6,6 +6,8 @@ import { ProfileCard as ProfileCardInterface } from "../interfaces/common"
 import { useNavigate } from 'react-router-dom';
 import { COMMON } from "../constants/common";
 import './profile.css';
+import uuid from "react-uuid";
+
 const ProfileCard: React.FC<ProfileCardInterface> = ({
     id, firstName, lastName, profileImageSrc = "", backgroundImageSrc = "", skills, location
 }) => {
@@ -17,7 +19,7 @@ const ProfileCard: React.FC<ProfileCardInterface> = ({
             <div className="profile-card__detail-name"><span>{firstName}</span><span> {lastName} </span></div>
             <div className="profile-card__detail-skills">
                 {skills.map((skill) => (
-                    <Chip label={skill.name} variant="outlined" size="small" color="primary" sx={{ 'margin-right': '4px' }} />))
+                    <Chip key={uuid()} label={skill.name} variant="outlined" size="small" color="primary" sx={{ 'margin-right': '4px' }} />))
                 }
             </div>
             <div className="profile-card__detail-location">{location.region}, {location.country}</div>
