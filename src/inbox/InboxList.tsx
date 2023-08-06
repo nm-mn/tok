@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MESSAGE } from "../constants/inbox"
 import dayjs, { Dayjs } from "dayjs"
 import InboxListItem from "./InboxListItem"
@@ -8,13 +8,14 @@ import { GraphQLQuery } from '@aws-amplify/api';
 import { API } from 'aws-amplify';
 import { ListChannelIdByProfileIdQuery } from "../interfaces/customAPI"
 import { listChannelIdByProfileId } from "../customgraphql/custom_queries"
+import { MyProfileIdContext } from "../App";
 
 interface Props {
     onSelectChannel: (id: string) => void
     channelIdSelected: string
 }
 const InboxList: React.FC<Props> = ({ onSelectChannel, channelIdSelected }) => {
-    const myProfileId = "f610046a-45f1-469e-a482-04c497a5502a";
+    const myProfileId = useContext(MyProfileIdContext).myProfileId;
     const [result, setResult] = useState({ inbox: [] as Inbox[], errorMessage: "" });
     const [query, setQuery] = useState("");
     const [isLoading, setIsLoading] = useState(true);

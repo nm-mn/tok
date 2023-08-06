@@ -1,28 +1,41 @@
 import React from "react";
 import TokButton from "../common/TokButton"
 import TokTextfield from "../common/TokTextfield"
-import { Auth } from "aws-amplify"
+import { Auth, API } from "aws-amplify"
 import './login.css';
 import "../common/common.css"
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react'
-import { AuthenticatedContext } from "../App"
+import { AuthenticatedContext, MyProfileIdContext } from "../App";
+import { GraphQLQuery } from '@aws-amplify/api';
+
 
 const Login: React.FC = () => {
     const authContext = useContext(AuthenticatedContext);
+    const myProfileContext = useContext(MyProfileIdContext);
+
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    async function signIn(email: string, password: string) {
+    async function signIn() {
         try {
             await Auth.signIn(email, password);
             authContext.setIsAuthenticated(true);
+            // get profile id
+            // const profile = await API.graphql<GraphQLQuery<>>({query: })
+            myProfileContext.setMyProfileId("f610046a-45f1-469e-a482-04c497a5502a")
             navigate("/");
         } catch (error) {
             authContext.setIsAuthenticated(false);
             console.log('error signing in', error);
+        }
+    }
+
+    const onKeyDown = (e: any) => {
+        if (e.key == "Enter") {
+            signIn();
         }
     }
 
@@ -43,10 +56,13 @@ const Login: React.FC = () => {
                     <TokTextfield
                         label="Email" type="email" value={email} onChange={(e) => { setEmail(e) }}
                         mb={2} />
-                    <TokTextfield label="Password" type="password" value={password} onChange={(e) => { setPassword(e) }}
+                    <TokTextfield label="Password" type="password"
+                        value={password}
+                        onChange={(e) => { setPassword(e) }}
+                        onKeyDown={(e) => { onKeyDown(e) }}
                         mb={6} />
                     <TokButton label="Login"
-                        onClick={async () => { await signIn(email, password) }} />
+                        onClick={async () => { await signIn() }} />
                     <div className="login__form-explanation">
                         <div><span>Forgot password?</span><span className="link">Reset here</span></div>
                         <div>

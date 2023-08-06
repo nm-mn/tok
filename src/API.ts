@@ -2652,6 +2652,51 @@ export type ReadStatusesByChannel_idQuery = {
   } | null,
 };
 
+export type ProfilesByEmailQueryVariables = {
+  email: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ProfilesByEmailQuery = {
+  profilesByEmail?:  {
+    __typename: "ModelProfileConnection",
+    items:  Array< {
+      __typename: "Profile",
+      id: string,
+      first_name: string,
+      last_name: string,
+      email: string,
+      accepting: boolean,
+      region_location?: string | null,
+      country_location?: string | null,
+      primary_language?: string | null,
+      secondary_language?: string | null,
+      tetrary_language?: string | null,
+      bio?: string | null,
+      skills?:  {
+        __typename: "ModelSkillInstanceConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      channels?:  {
+        __typename: "ModelChannelProfileConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type ChannelProfilesByChannelChannel_idQueryVariables = {
   channelChannel_id: string,
   sortDirection?: ModelSortDirection | null,

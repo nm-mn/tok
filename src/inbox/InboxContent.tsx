@@ -4,11 +4,12 @@ import SendIcon from '@mui/icons-material/Send';
 import Messages from "./Messages"
 import "./inbox.css";
 import dayjs from "dayjs";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GraphQLQuery } from "@aws-amplify/api";
 import { ByChannelAndDateQuery } from "../API"
 import { API } from "aws-amplify";
 import { byChannelAndDate } from "../graphql/queries"
+import { MyProfileIdContext } from "../App";
 
 interface Props {
     channelId: string
@@ -21,9 +22,7 @@ const mock = {
 
 
 const InboxContent: React.FC<Props> = ({ channelId = "", profileId = "" }) => {
-    // TODO: replace this with global state
-    const myProfileId = "f610046a-45f1-469e-a482-04c497a5502a";
-
+    const myProfileId = useContext(MyProfileIdContext).myProfileId;
     const [result, setResult] = useState({
         messages: [],
         profile: { firstName: "", lastName: "" },

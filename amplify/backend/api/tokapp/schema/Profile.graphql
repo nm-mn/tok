@@ -8,7 +8,7 @@ type Profile @model @auth(rules: [
   id: ID! @primaryKey
   first_name: String!
   last_name: String!
-  email: String!
+  email: String! @index(name: "byEmail")
   accepting: Boolean!
   region_location: String
   country_location: String

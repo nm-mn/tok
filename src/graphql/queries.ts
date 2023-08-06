@@ -907,6 +907,52 @@ export const readStatusesByChannel_id = /* GraphQL */ `
     }
   }
 `;
+export const profilesByEmail = /* GraphQL */ `
+  query ProfilesByEmail(
+    $email: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    profilesByEmail(
+      email: $email
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        first_name
+        last_name
+        email
+        accepting
+        region_location
+        country_location
+        primary_language
+        secondary_language
+        tetrary_language
+        bio
+        skills {
+          nextToken
+          startedAt
+        }
+        channels {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const channelProfilesByChannelChannel_id = /* GraphQL */ `
   query ChannelProfilesByChannelChannel_id(
     $channelChannel_id: ID!
