@@ -43,6 +43,7 @@ export interface Skill {
 export interface Inbox {
     id: string;
     status: string; // TODO: to enum read, unread, selected
+    readStatusId: string;
     sender: string;
     date: Dayjs;
     message: string;

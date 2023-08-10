@@ -24,7 +24,7 @@ const Login: React.FC = () => {
             await Auth.signIn(email, password);
             authContext.setIsAuthenticated(true);
             // get profile id
-            // const profile = await API.graphql<GraphQLQuery<>>({query: })
+            const profile = await API.graphql<GraphQLQuery<>>({query: })
             myProfileContext.setMyProfileId("f610046a-45f1-469e-a482-04c497a5502a")
             navigate("/");
         } catch (error) {

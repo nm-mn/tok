@@ -121,6 +121,7 @@
 
 .inbox-content__footer {
     padding: 16px;
+    display: flex;
 }
 .inbox-content__textarea {
     width: calc(100% - 44px); /* icon 28px + padding 16px */

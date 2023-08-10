@@ -56,6 +56,7 @@ export type ListChannelIdByProfileIdQuery = {
         updatedAt: string,
         readStatus: {
           items: Array<{
+            id: string,
             date: string,
             profile_id: string
           }>

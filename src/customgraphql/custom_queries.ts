@@ -70,6 +70,7 @@ export const listChannelIdByProfileId = /* GraphQL */ `
         channel {
           readStatus(filter: { profile_id: { eq: $profileId}}){
             items {
+              id
               date
               profile_id
             }
