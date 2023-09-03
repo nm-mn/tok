@@ -7,12 +7,11 @@ import "../common/common.css"
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react'
-import { AuthenticatedContext, MyProfileIdContext } from "../App";
+import { MyProfileIdContext } from "../App";
 import { GraphQLQuery } from '@aws-amplify/api';
 
 
 const Login: React.FC = () => {
-    const authContext = useContext(AuthenticatedContext);
     const myProfileContext = useContext(MyProfileIdContext);
 
     const navigate = useNavigate();
@@ -22,13 +21,11 @@ const Login: React.FC = () => {
     async function signIn() {
         try {
             await Auth.signIn(email, password);
-            authContext.setIsAuthenticated(true);
             // get profile id
-            const profile = await API.graphql<GraphQLQuery<>>({query: })
+            // const profile = await API.graphql<GraphQLQuery<>>({query: })
             myProfileContext.setMyProfileId("f610046a-45f1-469e-a482-04c497a5502a")
             navigate("/");
         } catch (error) {
-            authContext.setIsAuthenticated(false);
             console.log('error signing in', error);
         }
     }
