@@ -6,14 +6,13 @@ interface Props {
 }
 
 export const RouteGuard = (props: Props) => {
-    const navigate = useNavigate()
-    const { authStatus } = useAuthenticator(context => [context.authStatus])
+    const navigate = useNavigate();
+    const { authStatus } = useAuthenticator(context => [context.authStatus]);
     useEffect(() => {
-        console.log(authStatus)
         if (authStatus === "unauthenticated") {
-            navigate("/login")
+            navigate("/login");
         }
-    },[authStatus])
+    },[authStatus]);
     //TODO configuring
     return <div>{props.children}</div>;
 }
