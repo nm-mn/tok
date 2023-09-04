@@ -34,6 +34,7 @@ function App() {
                   <Outlet />
                 </RouteGuard>
               }
+              // Accessible only with authorization. 
               children={
                 <>
                   <Route path="/" element={<ProfileList />} />
