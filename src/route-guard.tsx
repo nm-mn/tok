@@ -13,6 +13,5 @@ export const RouteGuard = (props: Props) => {
             navigate("/login");
         }
     },[authStatus]);
-    //TODO: consider "configuring" status.
     return <div>{props.children}</div>;
 }

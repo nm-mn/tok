@@ -8,14 +8,14 @@ import { GraphQLQuery } from "@aws-amplify/api";
 import { API } from "aws-amplify";
 import { ListChannelIdByProfileIdQuery } from "../interfaces/customAPI";
 import { listChannelIdByProfileId } from "../customgraphql/custom_queries";
-import { MyProfileIdContext } from "../App";
+import { MyProfileContext } from "../App";
 
 interface Props {
   onSelectChannel: (id: string) => void;
   channelIdSelected: string;
 }
 const InboxList: React.FC<Props> = ({ onSelectChannel, channelIdSelected }) => {
-  const myProfileId = useContext(MyProfileIdContext).myProfileId;
+  const myProfileId = useContext(MyProfileContext).myProfileId;
   const [result, setResult] = useState({
     inbox: [] as Inbox[],
     errorMessage: "",

@@ -9,13 +9,15 @@ import ProfileList from './profile/ProfileList';
 import ProfileDetail from './profile/ProfileDetail';
 import { LOCALSTORAGE_KEY_AUTHENTICATION } from "./constants/internal_common"
 import Inbox from "./inbox/Inbox"
-import useMyProfileId from './hooks/useMyProfileId';
+import useMyProfile from './hooks/useMyProfile';
 import { RouteGuard } from './route-guard';
 import { Authenticator } from '@aws-amplify/ui-react';
 
-export const MyProfileIdContext = createContext({
+export const MyProfileContext = createContext({
   myProfileId: "",
-  setMyProfileId: (id: string) => {}
+  email: "",
+  setMyProfileId: (id: string) => {},
+  setEmail: (id: string) => {}
 });
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Authenticator.Provider>
-        <MyProfileIdContext.Provider value={useMyProfileId()}>
+        <MyProfileContext.Provider value={useMyProfile()}>
           <NavBar />
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -44,7 +46,7 @@ function App() {
               }
             />
           </Routes>
-        </MyProfileIdContext.Provider>
+        </MyProfileContext.Provider>
       </Authenticator.Provider>
     </ThemeProvider>
   );

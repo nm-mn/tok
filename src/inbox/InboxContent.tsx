@@ -15,7 +15,7 @@ import {
 import { onCreateMessage } from "../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
 import { byChannelAndDate } from "../graphql/queries";
-import { MyProfileIdContext } from "../App";
+import { MyProfileContext } from "../App";
 import { createMessage } from "../graphql/mutations";
 import { DAYJS_FORMAT } from "../constants/internal_common";
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const InboxContent: React.FC<Props> = ({ channelId = "", profileId = "" }) => {
-  const myProfileId = useContext(MyProfileIdContext).myProfileId;
+  const myProfileId = useContext(MyProfileContext).myProfileId;
   const [result, setResult] = useState({
     messages: [],
     profile: { firstName: "", lastName: "" },
