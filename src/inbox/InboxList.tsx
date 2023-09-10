@@ -4,40 +4,59 @@ import dayjs, { Dayjs } from "dayjs";
 import InboxListItem from "./InboxListItem";
 import "./inbox.css";
 import { Inbox } from "../interfaces/common";
-import { GraphQLQuery } from "@aws-amplify/api";
+import { graphqlOperation, GraphQLQuery, GraphQLSubscription } from "@aws-amplify/api";
 import { API } from "aws-amplify";
 import { ListChannelIdByProfileIdQuery } from "../interfaces/customAPI";
 import { listChannelIdByProfileId } from "../customgraphql/custom_queries";
-import { MyProfileContext } from "../App";
+import { onCreateMessage } from "../graphql/subscriptions"
+import { LOCALSTORAGE_KEY } from "../constants/internal_common";
+import { OnCreateMessageSubscription } from "../API"
+import { Observable } from "zen-observable-ts";
 
 interface Props {
   onSelectChannel: (id: string) => void;
   channelIdSelected: string;
 }
 const InboxList: React.FC<Props> = ({ onSelectChannel, channelIdSelected }) => {
-  const myProfileId = useContext(MyProfileContext).myProfileId;
+  const myProfileId = localStorage.getItem(LOCALSTORAGE_KEY.myProfileId);
   const [result, setResult] = useState({
     inbox: [] as Inbox[],
     errorMessage: "",
+    isLoading: false
   });
   const [query, setQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let ignore = false;
-    setIsLoading(true);
+    let unsubscribe: any;
     const fetchInbox = async () => {
       try {
-        const json = await API.graphql<
-          GraphQLQuery<ListChannelIdByProfileIdQuery>
-        >({
-          query: listChannelIdByProfileId,
-          variables: {
-            profileId: myProfileId,
-          },
-        });
         if (!ignore) {
-          setIsLoading(false);
+          setResult({ inbox: result.inbox, errorMessage: "", isLoading: true });
+          // get current data
+          const json = await API.graphql<
+            GraphQLQuery<ListChannelIdByProfileIdQuery>
+          >({
+            query: listChannelIdByProfileId,
+            variables: {
+              profileId: myProfileId,
+            },
+          });
+          console.log(channelIdSelected);
+          // const subscribed = API.graphql<GraphQLSubscription<OnCreateMessageSubscription>>({
+          //   query: onCreateMessage, variables: {
+          //     filter: {
+          //       channel_id: { eq: channelIdSelected }
+          //     }
+          //   }
+          // })
+          //   .subscribe({
+          //     next: ({ provider, value }) => { console.log({ provider, value }) },
+          //     error: (error) => console.log(error)
+          //   })
+          // unsubscribe = () => {
+          //   subscribed.unsubscribe();
+          // }
           if (validateInboxListResponse(json)) {
             // TODO: add a detailed validation to
             const convertedInboxList =
@@ -55,27 +74,30 @@ const InboxList: React.FC<Props> = ({ onSelectChannel, channelIdSelected }) => {
                 message: item.channel.messages.items[0].message || "",
                 skills: [],
               }));
-            setResult({ inbox: convertedInboxList, errorMessage: "" });
+            setResult({ inbox: convertedInboxList, errorMessage: "", isLoading: false });
           } else {
             console.log("error");
             // TODO: improve error message
-            setResult({ inbox: [], errorMessage: "Invalid Response" });
+            setResult({ inbox: [], errorMessage: "Invalid Response", isLoading: false });
           }
         }
       } catch (e) {
         console.log(e);
         // TODO: improve error message
-        setResult({ inbox: [], errorMessage: "API error" });
+        setResult({ inbox: [], errorMessage: "API error", isLoading: false });
       }
     };
     fetchInbox();
     // cleanup functionn
     return () => {
       ignore = true;
+      if (typeof unsubscribe == "function") {
+        unsubscribe()
+      }
     };
   }, [query]);
 
-  if (isLoading) {
+  if (result.isLoading) {
     // TODO: add loading spinner
     return <div>Loading</div>;
   } else if (result.inbox.length > 0) {

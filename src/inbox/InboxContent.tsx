@@ -15,16 +15,15 @@ import {
 import { onCreateMessage } from "../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
 import { byChannelAndDate } from "../graphql/queries";
-import { MyProfileContext } from "../App";
 import { createMessage } from "../graphql/mutations";
-import { DAYJS_FORMAT } from "../constants/internal_common";
+import { DAYJS_FORMAT, LOCALSTORAGE_KEY } from "../constants/internal_common";
 interface Props {
   channelId: string;
   profileId: string;
 }
 
 const InboxContent: React.FC<Props> = ({ channelId = "", profileId = "" }) => {
-  const myProfileId = useContext(MyProfileContext).myProfileId;
+  const myProfileId = localStorage.getItem(LOCALSTORAGE_KEY.myProfileId)
   const [result, setResult] = useState({
     messages: [],
     profile: { firstName: "", lastName: "" },
@@ -39,24 +38,43 @@ const InboxContent: React.FC<Props> = ({ channelId = "", profileId = "" }) => {
     }
     let ignore = false;
     setIsLoading(true);
-    const sub = API.graphql<GraphQLSubscription<OnCreateMessageSubscription>>(
-      graphqlOperation(onCreateMessage)
-    ).subscribe({
-      next: ({ provider, value }) => console.log({ provider, value }),
-      error: (error) => console.warn(error),
-    });
+    let unsubscribe: any;
+
     const fetchInbox = async () => {
       try {
-        const json = await API.graphql<GraphQLQuery<ByChannelAndDateQuery>>({
-          query: byChannelAndDate,
-          variables: {
-            channel_id: channelId,
-            sortDirection: "ASC",
-          },
-        });
-
         if (!ignore) {
           setIsLoading(false);
+          const json = await API.graphql<GraphQLQuery<ByChannelAndDateQuery>>({
+            query: byChannelAndDate,
+            variables: {
+              channel_id: channelId,
+              sortDirection: "ASC",
+            },
+          });
+          const subscribed = API.graphql<GraphQLSubscription<OnCreateMessageSubscription>>({
+            query: onCreateMessage, variables: {
+              filter: {
+                channel_id: { eq: channelId }
+              }
+            }
+          })
+            .subscribe({
+              next: ({ provider, value }) => {
+                const currentMessages = result.messages;
+                const newMessage = value.data.onCreateMessage;
+                currentMessages.push({
+                  isSelf: newMessage.profile_id == myProfileId,
+                  message: newMessage.message,
+                  datetime: dayjs(newMessage.date),
+                  isLast: true, //TODO: proper evaluation of isLast
+                })
+                setResult({...result, messages: currentMessages})
+              },
+              error: (error) => console.log(error)
+            })
+          unsubscribe = () => {
+            subscribed.unsubscribe();
+          }
 
           if (validateMessagesResponse(json)) {
             const rawMessages = json.data.byChannelAndDate.items;
@@ -119,8 +137,9 @@ const InboxContent: React.FC<Props> = ({ channelId = "", profileId = "" }) => {
     // cleanup functionn
     return () => {
       ignore = true;
-      // TODO: unsubscribe
-      sub.unsubscribe();
+      if (typeof unsubscribe == "function") {
+        unsubscribe()
+      }
     };
   }, [channelId]);
 

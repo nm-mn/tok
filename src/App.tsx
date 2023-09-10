@@ -7,16 +7,13 @@ import Login from "./login/Login"
 import NavBar from "./common/NavBar"
 import ProfileList from './profile/ProfileList';
 import ProfileDetail from './profile/ProfileDetail';
-import { LOCALSTORAGE_KEY_AUTHENTICATION } from "./constants/internal_common"
 import Inbox from "./inbox/Inbox"
 import useMyProfile from './hooks/useMyProfile';
 import { RouteGuard } from './route-guard';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 export const MyProfileContext = createContext({
-  myProfileId: "",
   email: "",
-  setMyProfileId: (id: string) => {},
   setEmail: (id: string) => {}
 });
 

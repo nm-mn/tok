@@ -27,7 +27,7 @@ const Login: React.FC = () => {
             myProfileContext.setEmail(session.getIdToken().payload.email);
             // get profile id
             // const profile = await API.graphql<GraphQLQuery<>>({query: })
-            myProfileContext.setMyProfileId("f610046a-45f1-469e-a482-04c497a5502a");
+            localStorage.setItem("myProfileId","f610046a-45f1-469e-a482-04c497a5502a" )
             navigate("/");
         } catch (error) {
             console.log('error signing in', error);
