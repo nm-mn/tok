@@ -12,6 +12,6 @@ export const RouteGuard = (props: Props) => {
         if (authStatus === "unauthenticated") {
             navigate("/login");
         }
-    },[authStatus]);
+    },[authStatus, navigate]);
     return <div>{props.children}</div>;
 }
