@@ -3,7 +3,8 @@
 # input AMPLIFY { globalAuthRule: AuthRule = { allow: private } } # FOR TESTING ONLY!
 
 type Profile @model @auth(rules: [
-  { allow: private}
+  { allow: private, operations: [read]},
+  { allow: owner }
 ]){
   id: ID! @primaryKey
   first_name: String!

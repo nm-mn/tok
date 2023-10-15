@@ -67,6 +67,7 @@ export type ChannelProfile = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type Profile = {
@@ -89,6 +90,7 @@ export type Profile = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type ModelSkillInstanceConnection = {
@@ -691,6 +693,7 @@ export type CreateChannelMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -759,6 +762,7 @@ export type UpdateChannelMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -827,6 +831,7 @@ export type DeleteChannelMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1046,6 +1051,7 @@ export type CreateProfileMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1055,6 +1061,7 @@ export type CreateProfileMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1107,6 +1114,7 @@ export type UpdateProfileMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1116,6 +1124,7 @@ export type UpdateProfileMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1168,6 +1177,7 @@ export type DeleteProfileMutation = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1177,6 +1187,7 @@ export type DeleteProfileMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1234,6 +1245,7 @@ export type CreateSkillInstanceMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1299,6 +1311,7 @@ export type UpdateSkillInstanceMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1364,6 +1377,7 @@ export type DeleteSkillInstanceMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1546,12 +1560,14 @@ export type CreateChannelProfileMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1618,12 +1634,14 @@ export type UpdateChannelProfileMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1690,12 +1708,14 @@ export type DeleteChannelProfileMutation = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -1719,6 +1739,7 @@ export type GetChannelQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2040,6 +2061,7 @@ export type GetProfileQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2049,6 +2071,7 @@ export type GetProfileQuery = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -2091,6 +2114,7 @@ export type ListProfilesQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2135,6 +2159,7 @@ export type SyncProfilesQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2194,6 +2219,7 @@ export type GetSkillInstanceQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -2249,6 +2275,7 @@ export type ListSkillInstancesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -2306,6 +2333,7 @@ export type SyncSkillInstancesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -2478,12 +2506,14 @@ export type GetChannelProfileQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -2528,12 +2558,14 @@ export type ListChannelProfilesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2582,12 +2614,14 @@ export type SyncChannelProfilesQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2691,6 +2725,7 @@ export type ProfilesByEmailQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2740,12 +2775,14 @@ export type ChannelProfilesByChannelChannel_idQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2795,12 +2832,14 @@ export type ChannelProfilesByProfileIdQuery = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2827,6 +2866,7 @@ export type OnCreateChannelSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2894,6 +2934,7 @@ export type OnUpdateChannelSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2961,6 +3002,7 @@ export type OnDeleteChannelSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3127,6 +3169,7 @@ export type OnDeleteReadStatusSubscription = {
 
 export type OnCreateProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateProfileSubscription = {
@@ -3173,6 +3216,7 @@ export type OnCreateProfileSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3182,11 +3226,13 @@ export type OnCreateProfileSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateProfileSubscription = {
@@ -3233,6 +3279,7 @@ export type OnUpdateProfileSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3242,11 +3289,13 @@ export type OnUpdateProfileSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteProfileSubscription = {
@@ -3293,6 +3342,7 @@ export type OnDeleteProfileSubscription = {
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3302,6 +3352,7 @@ export type OnDeleteProfileSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -3358,6 +3409,7 @@ export type OnCreateSkillInstanceSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -3422,6 +3474,7 @@ export type OnUpdateSkillInstanceSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -3486,6 +3539,7 @@ export type OnDeleteSkillInstanceSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -3604,6 +3658,7 @@ export type OnDeleteSkillMasterSubscription = {
 
 export type OnCreateChannelProfileSubscriptionVariables = {
   filter?: ModelSubscriptionChannelProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateChannelProfileSubscription = {
@@ -3664,17 +3719,20 @@ export type OnCreateChannelProfileSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateChannelProfileSubscriptionVariables = {
   filter?: ModelSubscriptionChannelProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateChannelProfileSubscription = {
@@ -3735,17 +3793,20 @@ export type OnUpdateChannelProfileSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteChannelProfileSubscriptionVariables = {
   filter?: ModelSubscriptionChannelProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteChannelProfileSubscription = {
@@ -3806,11 +3867,13 @@ export type OnDeleteChannelProfileSubscription = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };

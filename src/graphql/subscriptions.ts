@@ -16,6 +16,7 @@ export const onCreateChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -73,6 +74,7 @@ export const onUpdateChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -130,6 +132,7 @@ export const onDeleteChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -273,8 +276,11 @@ export const onDeleteReadStatus = /* GraphQL */ `
   }
 `;
 export const onCreateProfile = /* GraphQL */ `
-  subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onCreateProfile(filter: $filter) {
+  subscription OnCreateProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onCreateProfile(filter: $filter, owner: $owner) {
       id
       first_name
       last_name
@@ -312,6 +318,7 @@ export const onCreateProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -321,12 +328,16 @@ export const onCreateProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateProfile = /* GraphQL */ `
-  subscription OnUpdateProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onUpdateProfile(filter: $filter) {
+  subscription OnUpdateProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onUpdateProfile(filter: $filter, owner: $owner) {
       id
       first_name
       last_name
@@ -364,6 +375,7 @@ export const onUpdateProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -373,12 +385,16 @@ export const onUpdateProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteProfile = /* GraphQL */ `
-  subscription OnDeleteProfile($filter: ModelSubscriptionProfileFilterInput) {
-    onDeleteProfile(filter: $filter) {
+  subscription OnDeleteProfile(
+    $filter: ModelSubscriptionProfileFilterInput
+    $owner: String
+  ) {
+    onDeleteProfile(filter: $filter, owner: $owner) {
       id
       first_name
       last_name
@@ -416,6 +432,7 @@ export const onDeleteProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -425,6 +442,7 @@ export const onDeleteProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -474,6 +492,7 @@ export const onCreateSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -531,6 +550,7 @@ export const onUpdateSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -588,6 +608,7 @@ export const onDeleteSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -695,8 +716,9 @@ export const onDeleteSkillMaster = /* GraphQL */ `
 export const onCreateChannelProfile = /* GraphQL */ `
   subscription OnCreateChannelProfile(
     $filter: ModelSubscriptionChannelProfileFilterInput
+    $owner: String
   ) {
-    onCreateChannelProfile(filter: $filter) {
+    onCreateChannelProfile(filter: $filter, owner: $owner) {
       id
       channelChannel_id
       profileId
@@ -745,20 +767,23 @@ export const onCreateChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateChannelProfile = /* GraphQL */ `
   subscription OnUpdateChannelProfile(
     $filter: ModelSubscriptionChannelProfileFilterInput
+    $owner: String
   ) {
-    onUpdateChannelProfile(filter: $filter) {
+    onUpdateChannelProfile(filter: $filter, owner: $owner) {
       id
       channelChannel_id
       profileId
@@ -807,20 +832,23 @@ export const onUpdateChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteChannelProfile = /* GraphQL */ `
   subscription OnDeleteChannelProfile(
     $filter: ModelSubscriptionChannelProfileFilterInput
+    $owner: String
   ) {
-    onDeleteChannelProfile(filter: $filter) {
+    onDeleteChannelProfile(filter: $filter, owner: $owner) {
       id
       channelChannel_id
       profileId
@@ -869,12 +897,14 @@ export const onDeleteChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
