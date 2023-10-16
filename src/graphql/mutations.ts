@@ -19,6 +19,7 @@ export const createChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -79,6 +80,7 @@ export const updateChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -139,6 +141,7 @@ export const deleteChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -336,6 +339,7 @@ export const createProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -345,6 +349,7 @@ export const createProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -391,6 +396,7 @@ export const updateProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -400,6 +406,7 @@ export const updateProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -446,6 +453,7 @@ export const deleteProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -455,6 +463,7 @@ export const deleteProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -505,6 +514,7 @@ export const createSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -563,6 +573,7 @@ export const updateSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -621,6 +632,7 @@ export const deleteSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -782,12 +794,14 @@ export const createChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -845,12 +859,14 @@ export const updateChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -908,12 +924,14 @@ export const deleteChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;

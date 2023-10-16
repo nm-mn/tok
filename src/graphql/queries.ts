@@ -16,6 +16,7 @@ export const getChannel = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -314,6 +315,7 @@ export const getProfile = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -323,6 +325,7 @@ export const getProfile = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -366,6 +369,7 @@ export const listProfiles = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -410,6 +414,7 @@ export const syncProfiles = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -460,6 +465,7 @@ export const getSkillInstance = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
@@ -516,6 +522,7 @@ export const listSkillInstances = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
@@ -573,6 +580,7 @@ export const syncSkillInstances = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
@@ -731,12 +739,14 @@ export const getChannelProfile = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -776,12 +786,14 @@ export const listChannelProfiles = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -830,12 +842,14 @@ export const syncChannelProfiles = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -947,6 +961,7 @@ export const profilesByEmail = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -997,12 +1012,14 @@ export const channelProfilesByChannelChannel_id = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -1053,12 +1070,14 @@ export const channelProfilesByProfileId = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
