@@ -23,12 +23,6 @@
       },
       "api": {
         "tokapp": {}
-      },
-      "function": {
-        "customResolver": {
-          "deploymentBucketName": "amplify-tokapp-dev-193804-deployment",
-          "s3Key": "amplify-builds/customResolver-4d495a434b3777624558-build.zip"
-        }
       }
     }
   }
