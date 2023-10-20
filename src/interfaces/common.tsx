@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs"
+
 export interface Label {
     value: string;
     name: string;
@@ -36,4 +38,21 @@ export interface Skill {
     mentorshipType?: string[];
     credential?: string;
     explanation?: string;
+}
+
+export interface Inbox {
+    id: string;
+    status: string; // TODO: to enum read, unread, selected
+    readStatusId: string;
+    sender: string;
+    date: Dayjs;
+    message: string;
+    skills: Label[]
+}
+
+export interface Message {
+    isSelf: boolean;
+    isLast: boolean; // variable used to determine whether to show the avatar next to the message bubble
+    datetime: Dayjs;
+    message: string;
 }

@@ -47,6 +47,7 @@
     line-height: 20px;
     padding: 24px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .inbox-list-item__avatar-container {
@@ -86,7 +87,7 @@
 
 
 .inbox-list-item__selected {
-    background-color: #e4d7d380;
+    background-color: #e4d7d3a1;
 }
 
 .inbox-content {
@@ -113,10 +114,14 @@
 .inbox-content__body {
     flex-grow: 1;
     padding: 16px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .inbox-content__footer {
     padding: 16px;
+    display: flex;
 }
 .inbox-content__textarea {
     width: calc(100% - 44px); /* icon 28px + padding 16px */
@@ -149,7 +154,7 @@
     border-radius: 10px;
     max-width: 500px;
     padding: 8px 12px;
-    white-space: pre;
+    white-space: pre-wrap;
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 8px;

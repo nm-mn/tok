@@ -1,0 +1,27 @@
+type Channel @model @auth(rules: [
+  { allow: private}
+]){
+    channel_id: ID! @primaryKey
+    profiles: [Profile]! @manyToMany(relationName: "ChannelProfile")
+    messages: [Message]! @hasMany(indexName: "byChannelAndDate", fields: ["channel_id"])
+    readStatus: [ReadStatus] @hasMany(indexName: "byChannel", fields: ["channel_id"])
+}
+
+type Message @model @auth(rules: [
+  { allow: private}
+]){
+    id: ID!
+    channel_id: ID! @index(name: "byChannelAndDate", queryField: "byChannelAndDate", sortKeyFields: ["date"])
+    message: String!
+    profile_id: ID!
+    date: String!
+}
+
+type ReadStatus @model @auth(rules: [
+  { allow: private}
+]){
+    id: ID!
+    channel_id: ID! @index(name: "byChannel")
+    profile_id: ID!
+    date: String
+}
