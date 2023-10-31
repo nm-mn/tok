@@ -1,0 +1,12 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+	"name": "tok",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+  "remoteUser": "root",
+  "runArgs": [
+	"-e AWS_CONFIG_PATH=/workspace/tok/.devcontainer/.aws/config"
+  ],
+  "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh"
+}
